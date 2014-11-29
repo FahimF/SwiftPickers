@@ -81,12 +81,15 @@ import UIKit
 	}
 	
 	// MARK:- Public Methods
+	func tapHandler() {
+		println("Button tapped")
+	}
+	
 	func configuredPickerView()->UIView? {
-		let btn = UIButton(frame:CGRect(x:20, y:50, width:100, height:50))
-		btn.setTitleColor(UIColor.blackColor(), forState:UIControlState.Normal)
-		btn.backgroundColor = UIColor.blueColor()
+		let btn = UIButton.buttonWithType(UIButtonType.System) as UIButton
+		btn.frame = CGRect(x:20, y:50, width:100, height:50)
 		btn.setTitle("Tap Me", forState:UIControlState.Normal)
-		btn.addTarget(self, action:"doneButtonTap", forControlEvents:UIControlEvents.TouchUpInside)
+		btn.addTarget(self, action:Selector("tapHandler"), forControlEvents:UIControlEvents.TouchUpInside)
 //		assert(false, "This is an abstract class, you must use a subclass of BaseSwiftPicker (like StringSwiftPicker or DateSwiftPicker)")
 		return btn
 	}
@@ -113,18 +116,16 @@ import UIKit
 	
 	func showPicker() {
 		let vwMain = UIView(frame:CGRect(x:0, y:0, width:szView.width, height:260))
-		// iPhone 4 only fix as per: https://github.com/skywinder/ActionSheetPicker-3.0/issues/5
-		let model = UIDevice.currentDevice().modelName
-		if model.hasPrefix("iPhone3") {
-			vwMain.backgroundColor = UIColor(red:0.97, green:0.97, blue:0.97, alpha:1.0)
-		}
+		vwMain.backgroundColor = UIColor.whiteColor()
 		createToolbar(title)
 		vwMain.addSubview(toolbar)
 		// Get picker (this is handled by sub-classes)
 		vwPicker = configuredPickerView()
-//		assert(vwPicker != nil, "Picker view failed to instantiate, perhaps you have invalid component data.")
-		vwMain.addSubview(vwPicker)
-		vwMain.bringSubviewToFront(vwPicker)
+		if vwPicker != nil {
+			vwMain.addSubview(vwPicker)
+		} else {
+			assert(false, "Picker view failed to instantiate, perhaps you have invalid component data.")
+		}
 		presentPickerFor(vwMain)
 	}
 	
@@ -210,9 +211,9 @@ import UIKit
 		} else {
 			// Present picker as action sheet
 			NSNotificationCenter.defaultCenter().addObserver(self, selector:"didRotate:", name:UIApplicationWillChangeStatusBarOrientationNotification, object:nil)
-			actSheet = ActionSheet(view:view)
-			assert(actSheet != nil, "The action sheet can't be nil")
-			actSheet.showInContainerView()
+			actSheet = ActionSheet(content:view)
+			let rv = UIApplication.sharedApplication().keyWindow?.subviews.first as UIView
+			rv.addSubview(actSheet.view)
 		}
 	}
 	

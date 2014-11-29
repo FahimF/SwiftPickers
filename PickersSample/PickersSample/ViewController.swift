@@ -23,7 +23,7 @@ class ViewController: UIViewController {
 	// MARK:- Actions
 	@IBAction func showPicker() {
 		let p = BaseSwiftPicker(origin:view)
-//		let data = ["Red", "Blue", "Green", "Yellow"]
+		let data = ["Red", "Blue", "Green", "Yellow"]
 //		let p = StringSwiftPicker(title:"Colours", data:data, selected:0, done:{(pv, index, value) in
 //			println("Selected item: \(index) with value: \(value)")
 //		}, cancel:{(pv) in
