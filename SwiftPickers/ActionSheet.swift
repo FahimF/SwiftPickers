@@ -8,11 +8,10 @@
 
 import UIKit
 
-class ActionSheet: UIView {
+@objc class ActionSheet: UIView {
 	let animationDuration = 0.25
 	var vwBG = UIView()
 	
-	private var actWindow:UIWindow!
 	private var presented = false
 	private var view:UIView!
 	
@@ -25,11 +24,6 @@ class ActionSheet: UIView {
 		vwBG.backgroundColor = UIColor.whiteColor()
 		addSubview(vwBG)
 		addSubview(view)
-		// Create window
-		actWindow = UIWindow(frame:UIScreen.mainScreen().bounds)
-		actWindow.windowLevel = UIWindowLevelAlert
-		actWindow.backgroundColor = UIColor.clearColor()
-		actWindow.rootViewController = ActionSheetVC()
 	}
 	
 	// MARK:- Public Methods
@@ -40,23 +34,15 @@ class ActionSheet: UIView {
 			self.center = pt
 			self.backgroundColor = UIColor(white:0, alpha:0)
 		}, completion:{(finished) in
-			self.destroyWindow()
 			self.removeFromSuperview()
 		})
 	}
 	
-	func showFromBarButton(btn:UIBarButtonItem, animated:Bool) {
-		showInContainerView()
-	}
-	
 	func showInContainerView() {
-		// Make sheet window visible and active
-		if actWindow.keyWindow {
-			actWindow.makeKeyAndVisible()
-		}
-		actWindow.hidden = false
-		// Put the action sheet in the container (it will be presented ASAP)
-		actionSheetContainer().actSheet = self
+		let vc = ActionSheetVC()
+		vc.actSheet = self
+		let rv = UIApplication.sharedApplication().keyWindow?.subviews.first as UIView
+		rv.addSubview(vc.view)
 	}
 	
 	func showActionSheet(animated:Bool) {
@@ -80,41 +66,21 @@ class ActionSheet: UIView {
 		vwBG.frame = view.frame
 		vwBG.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
 	}
-	
-	// MARK:- Private Methods
-	private func destroyWindow() {
-		if actWindow != nil {
-			actionSheetContainer().actSheet = nil
-			if let w = actWindow {
-				w.hidden = true
-				if w.keyWindow {
-					w.resignFirstResponder()
-				}
-			}
-			actWindow = nil
-		}
-	}
-	
-	private func actionSheetContainer()->ActionSheetVC {
-		return actWindow.rootViewController as ActionSheetVC
-	}
 }
 
 class ActionSheetVC: UIViewController {
-	var actSheet:ActionSheet? {
-		get {
-			return self.actSheet
-		}
-		set {
-			if self.actSheet == newValue {
+	private var prevAct:ActionSheet? = nil
+	var actSheet:ActionSheet? = nil {
+		didSet {
+			if actSheet == prevAct {
 				return
 			}
-			if let act = self.actSheet {
+			prevAct = actSheet
+			if let act = actSheet {
 				if act.presented {
 					act.dismissWithButtonClick(0, animated:true)
 				}
 			}
-			self.actSheet = newValue
 			presentActionSheet(true)
 		}
 	}

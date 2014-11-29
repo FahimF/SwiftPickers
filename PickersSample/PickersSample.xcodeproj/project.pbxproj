@@ -15,6 +15,7 @@
 		DDC84CE91A2941E600040F0F /* BaseSwiftPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC84CE81A2941E600040F0F /* BaseSwiftPicker.swift */; };
 		DDC84CEB1A294E5700040F0F /* ActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC84CEA1A294E5700040F0F /* ActionSheet.swift */; };
 		DDC84CED1A296C4F00040F0F /* UIDevice-Extras.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC84CEC1A296C4F00040F0F /* UIDevice-Extras.swift */; };
+		DDC84CEF1A29AA8200040F0F /* StringSwiftPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC84CEE1A29AA8200040F0F /* StringSwiftPicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		DDC84CE81A2941E600040F0F /* BaseSwiftPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseSwiftPicker.swift; sourceTree = "<group>"; };
 		DDC84CEA1A294E5700040F0F /* ActionSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionSheet.swift; sourceTree = "<group>"; };
 		DDC84CEC1A296C4F00040F0F /* UIDevice-Extras.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice-Extras.swift"; sourceTree = "<group>"; };
+		DDC84CEE1A29AA8200040F0F /* StringSwiftPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringSwiftPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 				DDC84CE81A2941E600040F0F /* BaseSwiftPicker.swift */,
 				DDC84CEA1A294E5700040F0F /* ActionSheet.swift */,
 				DDC84CEC1A296C4F00040F0F /* UIDevice-Extras.swift */,
+				DDC84CEE1A29AA8200040F0F /* StringSwiftPicker.swift */,
 			);
 			name = SwiftPickers;
 			path = ../SwiftPickers;
@@ -162,6 +165,7 @@
 			files = (
 				DDC84CE91A2941E600040F0F /* BaseSwiftPicker.swift in Sources */,
 				DDC84CCA1A293FE800040F0F /* ViewController.swift in Sources */,
+				DDC84CEF1A29AA8200040F0F /* StringSwiftPicker.swift in Sources */,
 				DDC84CC81A293FE800040F0F /* AppDelegate.swift in Sources */,
 				DDC84CEB1A294E5700040F0F /* ActionSheet.swift in Sources */,
 				DDC84CED1A296C4F00040F0F /* UIDevice-Extras.swift in Sources */,

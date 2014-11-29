@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BaseSwiftPicker: NSObject, UIPopoverControllerDelegate {
+@objc class BaseSwiftPicker: NSObject, UIPopoverControllerDelegate {
 	let kButtonValue = "buttonValue"
 	let kButtonTitle = "buttonTitle"
 	let kButtonAction = "buttonAction"
@@ -31,18 +31,12 @@ class BaseSwiftPicker: NSObject, UIPopoverControllerDelegate {
 	private var btnDone:UIBarButtonItem!
 	private var btnCancel:UIBarButtonItem!
 	private var vwContainer:UIView!
-	private var target:AnyObject!
-	private var success:Selector!
-	private var cancel:Selector!
 	private var actSheet:ActionSheet!
 	private var popOver:UIPopoverController!
 	
 	// MARK:- Initializers
-	convenience init(target:AnyObject, success:Selector, cancel:Selector, origin:AnyObject) {
+	convenience init(origin:AnyObject) {
 		self.init()
-		self.target = target
-		self.success = success
-		self.cancel = cancel
 		// Picker size
 		if isiPad {
 			szView = CGSize(width:320, height:320)
@@ -70,8 +64,8 @@ class BaseSwiftPicker: NSObject, UIPopoverControllerDelegate {
 			assert(false, "Invalid origin provided to ActionSheetPicker: \(origin)")
 		}
 		// Picker buttons
-		btnDone = UIBarButtonItem(barButtonSystemItem:UIBarButtonSystemItem.Done, target:self, action:"doneTapped")
-		btnCancel = UIBarButtonItem(barButtonSystemItem:UIBarButtonSystemItem.Cancel, target:self, action:"cancelTapped")
+		btnDone = UIBarButtonItem(barButtonSystemItem:UIBarButtonSystemItem.Done, target:self, action:"doneButtonTap")
+		btnCancel = UIBarButtonItem(barButtonSystemItem:UIBarButtonSystemItem.Cancel, target:self, action:"cancelButtonTap")
 	}
 	
 	deinit {
@@ -83,18 +77,33 @@ class BaseSwiftPicker: NSObject, UIPopoverControllerDelegate {
 		if let c = vwPicker as? UIControl {
 			c.removeTarget(nil, action:nil, forControlEvents:UIControlEvents.AllEvents)
 		}
-		target = nil
 		NSNotificationCenter.defaultCenter().removeObserver(self)
 	}
 	
 	// MARK:- Public Methods
+	func configuredPickerView()->UIView? {
+		let btn = UIButton(frame:CGRect(x:20, y:50, width:100, height:50))
+		btn.setTitleColor(UIColor.blackColor(), forState:UIControlState.Normal)
+		btn.backgroundColor = UIColor.blueColor()
+		btn.setTitle("Tap Me", forState:UIControlState.Normal)
+		btn.addTarget(self, action:"doneButtonTap", forControlEvents:UIControlEvents.TouchUpInside)
+//		assert(false, "This is an abstract class, you must use a subclass of BaseSwiftPicker (like StringSwiftPicker or DateSwiftPicker)")
+		return btn
+	}
+	
+	func doneButtonTap() {
+		doneTapped()
+	}
+	
+	func cancelButtonTap() {
+		cancelTapped()
+	}
+	
 	func doneTapped() {
-		notifyTarget(target, success:success, origin:originItem())
 		dismissPicker()
 	}
 	
 	func cancelTapped() {
-		notifyTarget(target, cancel:cancel, origin:originItem())
 		dismissPicker()
 	}
 	
@@ -111,19 +120,11 @@ class BaseSwiftPicker: NSObject, UIPopoverControllerDelegate {
 		}
 		createToolbar(title)
 		vwMain.addSubview(toolbar)
-		// The iOS 7 picker has a darkened alpha-only region on the first and last 8 pixels horizontally, but blurs the rest of its background. To make the whole popup appear to be edge-to-edge, we have to add blurring to the remaining left and right edges.
-		var r = CGRect(x:0, y:toolbar.frame.origin.y, width:8, height:vwMain.frame.size.height - toolbar.frame.origin.y)
-		let ltb = UIToolbar(frame:r)
-		r.origin.x = vwMain.frame.size.width - 8
-		let rtb = UIToolbar(frame:r)
-		ltb.barTintColor = toolbar.barTintColor
-		rtb.barTintColor = toolbar.barTintColor
-		vwMain.insertSubview(ltb, atIndex:0)
-		vwMain.insertSubview(rtb, atIndex:0)
 		// Get picker (this is handled by sub-classes)
 		vwPicker = configuredPickerView()
-		assert(vwPicker != nil, "Picker view failed to instantiate, perhaps you have invalid component data.")
+//		assert(vwPicker != nil, "Picker view failed to instantiate, perhaps you have invalid component data.")
 		vwMain.addSubview(vwPicker)
+		vwMain.bringSubviewToFront(vwPicker)
 		presentPickerFor(vwMain)
 	}
 	
@@ -137,24 +138,7 @@ class BaseSwiftPicker: NSObject, UIPopoverControllerDelegate {
 		}
 	}
 	
-	func notifyTarget(t:AnyObject, success:Selector, origin:AnyObject) {
-		assert(false, "This is an abstract class, you must use a subclass of BaseSwiftPicker (like StringSwiftPicker)")
-		if t.respondsToSelector(success) {
-			
-		}
-	}
-
-	func notifyTarget(t:AnyObject, cancel:Selector, origin:AnyObject) {
-		if t.respondsToSelector(cancel) {
-			assert(false, "This should not be called - if it is, need to figure out how to do performSelector in Swift")
-		}
-	}
-	
 	// MARK:- Private Methods
-	private func configuredPickerView()->UIView {
-		assert(false, "This is an abstract class, you must use a subclass of BaseSwiftPicker (like StringSwiftPicker or DateSwiftPicker)")
-	}
-	
 	private func createToolbar(title:String) {
 		toolbar.frame = CGRect(x:0, y:0, width:szView.width, height:44)
 		toolbar.barStyle = UIBarStyle.Default
@@ -207,7 +191,7 @@ class BaseSwiftPicker: NSObject, UIPopoverControllerDelegate {
 		}
 		// Done Button
 		items.append(btnDone)
-		toolbar.setItems(items, animated:false)
+		toolbar.items = items
 	}
 	
 	private func presentPickerFor(view:UIView) {
@@ -227,7 +211,8 @@ class BaseSwiftPicker: NSObject, UIPopoverControllerDelegate {
 			// Present picker as action sheet
 			NSNotificationCenter.defaultCenter().addObserver(self, selector:"didRotate:", name:UIApplicationWillChangeStatusBarOrientationNotification, object:nil)
 			actSheet = ActionSheet(view:view)
-			presentActionSheet()
+			assert(actSheet != nil, "The action sheet can't be nil")
+			actSheet.showInContainerView()
 		}
 	}
 	
@@ -260,15 +245,6 @@ class BaseSwiftPicker: NSObject, UIPopoverControllerDelegate {
 //		}
 	}
 	
-	private func presentActionSheet() {
-		assert(actSheet != nil, "The action sheet can't be nil")
-		if btnBar != nil {
-			actSheet.showFromBarButton(btnBar, animated:true)
-		} else {
-			actSheet.showInContainerView()
-		}
-	}
-	
 	private func originItem()->AnyObject {
 		if btnBar != nil {
 			return btnBar
@@ -293,8 +269,6 @@ class BaseSwiftPicker: NSObject, UIPopoverControllerDelegate {
 	// MARK:- UIPopoverController Delegate Methods
 	func popoverControllerDidDismissPopover(povc:UIPopoverController) {
 		// Notify target
-		notifyTarget(target, cancel:cancel, origin:originItem())
+		cancelTapped()
 	}
-	
-	// MARK:- Public Methods
 }

@@ -22,16 +22,15 @@ class ViewController: UIViewController {
 
 	// MARK:- Actions
 	@IBAction func showPicker() {
-		let p = BaseSwiftPicker(target:self, success:"pickerPicked", cancel:"pickerCancelled", origin:view)
+		let p = BaseSwiftPicker(origin:view)
+//		let data = ["Red", "Blue", "Green", "Yellow"]
+//		let p = StringSwiftPicker(title:"Colours", data:data, selected:0, done:{(pv, index, value) in
+//			println("Selected item: \(index) with value: \(value)")
+//		}, cancel:{(pv) in
+//			println("Cancelled selection")
+//		}, origin:view)
 		p.showPicker()
 	}
 	
-	func pickerPicked() {
-		println("Picker picked")
-	}
-	
-	func pickerCancelled() {
-		println("Picker cancelled")
-	}
 }
 
