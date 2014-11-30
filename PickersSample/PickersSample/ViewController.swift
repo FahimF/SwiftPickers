@@ -20,17 +20,19 @@ class ViewController: UIViewController {
 		// Dispose of any resources that can be recreated.
 	}
 
-	// MARK:- Actions
-	@IBAction func showPicker() {
-		let p = BaseSwiftPicker(origin:view)
-		let data = ["Red", "Blue", "Green", "Yellow"]
-//		let p = StringSwiftPicker(title:"Colours", data:data, selected:0, done:{(pv, index, value) in
-//			println("Selected item: \(index) with value: \(value)")
-//		}, cancel:{(pv) in
-//			println("Cancelled selection")
-//		}, origin:view)
-		p.showPicker()
+	deinit {
+		println("Main Deinit called")
 	}
 	
+	// MARK:- Actions
+	@IBAction func showPicker() {
+		let data = ["Red", "Blue", "Green", "Yellow"]
+		let p = StringSwiftPicker(title:"Colours", data:data, selected:0, done:{(pv, index, value) in
+			println("Selected item: \(index) with value: \(value)")
+		}, cancel:{(pv) in
+			println("Cancelled selection")
+		}, origin:view)
+		p.showPicker(self)
+	}
 }
 

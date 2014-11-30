@@ -16,19 +16,12 @@ class StringSwiftPicker: BaseSwiftPicker, UIPickerViewDelegate, UIPickerViewData
 	
 	// MARK:- Initializers
 	convenience init(title:String, data:NSArray, selected:Int, done:((StringSwiftPicker, Int, String)->Void), cancel:((StringSwiftPicker)->Void), origin:AnyObject) {
-		self.init(origin: origin)
+		self.init()
 		self.data = data
-		self.title = title
+		self.pickerTitle = title
 		self.selectedIndex = selected
 		self.done = done
 		self.cancel = cancel
-	}
-	
-	// MARK:- Class Methods
-	class func showPicker(title:String, data:NSArray, selected:Int, done:((StringSwiftPicker, Int, String)->Void), cancel:((StringSwiftPicker)->Void), origin:AnyObject)->StringSwiftPicker {
-		let ssp = StringSwiftPicker(title:title, data:data, selected:selected, done:done, cancel:cancel, origin:origin)
-		ssp.showPicker()
-		return ssp
 	}
 	
 	// MARK:- Overrides
