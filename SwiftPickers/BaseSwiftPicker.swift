@@ -58,9 +58,11 @@ import UIKit
 		println("View size: \(szView)")
 		// Content view
 		vwContent = UIView(frame:CGRect(x:0, y:szView.height, width:szView.width, height:260))
+		vwContent.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleTopMargin
 		println("Content view frame: \(vwContent.frame)")
 		// Toolbar
 		toolbar = UIToolbar(frame:CGRect(x:0, y:0, width:szView.width, height:44))
+		toolbar.autoresizingMask = UIViewAutoresizing.FlexibleWidth
 		toolbar.barStyle = UIBarStyle.Default
 		// Create default buttons, if necessary
 		if btnDone == nil {
@@ -81,10 +83,6 @@ import UIKit
 	
 	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
 		super.init(nibName:nibNameOrNil, bundle:nibBundleOrNil)
-	}
-	
-	deinit {
-		println("Deinit called")
 	}
 	
 	// MARK:- Overrides
@@ -132,6 +130,7 @@ import UIKit
 		setupToolbar()
 		// Get picker (this is handled by sub-classes)
 		vwPicker = configuredPickerView()
+		vwPicker.autoresizingMask = UIViewAutoresizing.FlexibleWidth
 		if vwPicker != nil {
 			vwContent.addSubview(vwPicker)
 		} else {

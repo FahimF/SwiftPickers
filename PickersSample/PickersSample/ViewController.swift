@@ -20,10 +20,6 @@ class ViewController: UIViewController {
 		// Dispose of any resources that can be recreated.
 	}
 
-	deinit {
-		println("Main Deinit called")
-	}
-	
 	// MARK:- Actions
 	@IBAction func showPicker() {
 		let data = ["Red", "Blue", "Green", "Yellow"]
