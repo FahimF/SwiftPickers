@@ -5,6 +5,9 @@
 //  Created by Fahim Farook on 29/11/14.
 //  Copyright (c) 2014 RookSoft Ltd. All rights reserved.
 //
+//  This is variation of the Objective-C library by skywinder
+//  https://github.com/skywinder/ActionSheetPicker-3.0/
+//
 
 import UIKit
 
@@ -55,11 +58,9 @@ import UIKit
 				}
 			}
 		}
-		println("View size: \(szView)")
 		// Content view
 		vwContent = UIView(frame:CGRect(x:0, y:szView.height, width:szView.width, height:260))
 		vwContent.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleTopMargin
-		println("Content view frame: \(vwContent.frame)")
 		// Toolbar
 		toolbar = UIToolbar(frame:CGRect(x:0, y:0, width:szView.width, height:44))
 		toolbar.autoresizingMask = UIViewAutoresizing.FlexibleWidth

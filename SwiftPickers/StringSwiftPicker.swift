@@ -5,6 +5,9 @@
 //  Created by Fahim Farook on 29/11/14.
 //  Copyright (c) 2014 RookSoft Ltd. All rights reserved.
 //
+//  This is variation of the Objective-C library by skywinder
+//  https://github.com/skywinder/ActionSheetPicker-3.0/
+//
 
 import UIKit
 
@@ -26,7 +29,6 @@ class StringSwiftPicker: BaseSwiftPicker, UIPickerViewDelegate, UIPickerViewData
 	
 	// MARK:- Overrides
 	override func configuredPickerView()->UIView? {
-		println("Configure picker view")
 		// Do not set up a picker if there is no data
 		if data == nil {
 			return nil

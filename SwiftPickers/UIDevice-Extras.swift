@@ -5,6 +5,9 @@
 //  Created by Fahim Farook on 29/11/14.
 //  Copyright (c) 2014 RookSoft Ltd. All rights reserved.
 //
+//  This code is copied directly from the following Stack Overflow thread:
+//  http://stackoverflow.com/questions/26028918/ios-how-to-determine-iphone-model-in-swift
+//
 
 import UIKit
 
@@ -61,5 +64,4 @@ public extension UIDevice {
 		}
 		return identifier
 	}
-	
 }
