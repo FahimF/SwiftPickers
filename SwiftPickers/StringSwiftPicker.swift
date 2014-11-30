@@ -18,7 +18,7 @@ class StringSwiftPicker: BaseSwiftPicker, UIPickerViewDelegate, UIPickerViewData
 	private var cancel:((StringSwiftPicker)->Void)!
 	
 	// MARK:- Initializers
-	convenience init(title:String, data:NSArray, selected:Int, done:((StringSwiftPicker, Int, String)->Void), cancel:((StringSwiftPicker)->Void), origin:AnyObject) {
+	convenience init(title:String, data:NSArray, selected:Int, done:((StringSwiftPicker, Int, String)->Void), cancel:((StringSwiftPicker)->Void)) {
 		self.init()
 		self.data = data
 		self.pickerTitle = title
