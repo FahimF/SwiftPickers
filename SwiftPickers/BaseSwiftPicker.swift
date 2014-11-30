@@ -218,7 +218,7 @@ import UIKit
 				lbl.textColor = UIColor.blackColor()
 				let fnt = UIFont.boldSystemFontOfSize(16)
 				lbl.font = fnt
-				lbl.text = title
+				lbl.text = pickerTitle
 				sz = (pickerTitle as NSString).sizeWithAttributes([NSFontAttributeName:fnt])
 			}
 			if sz.width < 180 {
