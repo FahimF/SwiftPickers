@@ -180,6 +180,17 @@ import UIKit
 		}
 	}
 	
+	func getPickerLabel(sz:CGSize)->UILabel {
+		let r = CGRect(origin:CGPointZero, size:sz)
+		let lbl = UILabel(frame:r)
+		lbl.textAlignment = NSTextAlignment.Center
+		lbl.minimumScaleFactor = 0.5
+		lbl.adjustsFontSizeToFitWidth = true
+		lbl.backgroundColor = UIColor.clearColor()
+		lbl.font = UIFont.systemFontOfSize(20)
+		return lbl
+	}
+	
 	// MARK:- Private Methods
 	private func setupToolbar() {
 		var items = [UIBarButtonItem]()

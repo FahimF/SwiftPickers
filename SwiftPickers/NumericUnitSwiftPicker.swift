@@ -117,10 +117,13 @@ class NumericUnitSwiftPicker: BaseSwiftPicker, UIPickerViewDelegate, UIPickerVie
 		return rowCount[component]
 	}
 	
-	func pickerView(pv:UIPickerView, titleForRow row:Int, forComponent component:Int) -> String! {
+	func pickerView(pv:UIPickerView, viewForRow row:Int, forComponent component:Int, reusingView view:UIView!) -> UIView {
+		let wd = pv.rowSizeForComponent(component).width
+		let sz = CGSize(width:wd, height:32)
+		let lbl = getPickerLabel(sz)
 		let vals = rows[component]
-		let ttl = vals[row]
-		return ttl
+		lbl.text = vals[row]
+		return lbl
 	}
 	
 	func pickerView(pv:UIPickerView, didSelectRow row:Int, inComponent component:Int) {

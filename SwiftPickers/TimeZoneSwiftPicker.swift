@@ -63,8 +63,8 @@ class TimeZoneSwiftPicker: BaseSwiftPicker, UIPickerViewDelegate, UIPickerViewDa
 				}
 			}
 		}
-		println("Continents: \(continents)")
-		println("Cities: \(cities)")
+		// Add the final one
+		self.cities[prev] = buf
 	}
 
 	// MARK:- Overrides
@@ -115,6 +115,20 @@ class TimeZoneSwiftPicker: BaseSwiftPicker, UIPickerViewDelegate, UIPickerViewDa
 			}
 		}
 		return 0
+	}
+	
+	func pickerView(pv:UIPickerView, viewForRow row:Int, forComponent component:Int, reusingView view:UIView!) -> UIView {
+		let wd = pv.rowSizeForComponent(component).width
+		let sz = CGSize(width:wd, height:32)
+		let lbl = getPickerLabel(sz)
+		if component == 0 {
+			lbl.text = continents[row] as? String
+		} else if component == 1 {
+			if let arr = cities[selCont] as? NSArray {
+				lbl.text = arr[row] as? String
+			}
+		}
+		return lbl
 	}
 	
 	func pickerView(pv:UIPickerView, titleForRow row:Int, forComponent component:Int) -> String! {

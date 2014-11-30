@@ -65,13 +65,16 @@ class StringSwiftPicker: BaseSwiftPicker, UIPickerViewDelegate, UIPickerViewData
 		return data.count
 	}
 	
-	func pickerView(pv:UIPickerView, titleForRow row:Int, forComponent component:Int) -> String! {
+	func pickerView(pv:UIPickerView, viewForRow row:Int, forComponent component:Int, reusingView view:UIView!) -> UIView {
+		let wd = pv.rowSizeForComponent(component).width
+		let sz = CGSize(width:wd, height:32)
+		let lbl = getPickerLabel(sz)
 		if let obj = data[row] as? String {
-			return obj
+			lbl.text = obj
+			return lbl
 		} else {
 			assert(false, "Only string data is supported by this picker type.")
 		}
-		return nil
 	}
 	
 	func pickerView(pv:UIPickerView, didSelectRow row:Int, inComponent component:Int) {
