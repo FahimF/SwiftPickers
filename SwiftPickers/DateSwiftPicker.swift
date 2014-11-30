@@ -28,6 +28,7 @@ class DateSwiftPicker: BaseSwiftPicker {
 	// MARK:- Initializers
 	convenience init(title:String, mode:UIDatePickerMode, date:NSDate, done:((DateSwiftPicker, AnyObject)->Void), cancel:((DateSwiftPicker)->Void)) {
 		self.init()
+		self.pickerTitle = title
 		self.mode = mode
 		self.selectedDate = date
 		self.done = done

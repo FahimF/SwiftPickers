@@ -65,10 +65,6 @@ class StringSwiftPicker: BaseSwiftPicker, UIPickerViewDelegate, UIPickerViewData
 		return data.count
 	}
 	
-	func pickerView(pv:UIPickerView, widthForComponent component:Int) -> CGFloat {
-		return pv.frame.size.width - 30
-	}
-	
 	func pickerView(pv:UIPickerView, titleForRow row:Int, forComponent component:Int) -> String! {
 		if let obj = data[row] as? String {
 			return obj

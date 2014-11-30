@@ -166,6 +166,14 @@ class ViewController: UITableViewController {
 			})
 			p.showPicker(self)
 			
+		case (2, 1):
+			let p = TimeZoneSwiftPicker(title:"Time Zones", selected:NSTimeZone.defaultTimeZone(), done:{(pv, value) in
+				println("Selected zone: \(value)")
+				}, cancel:{(pv) in
+					println("Cancelled selection")
+			})
+			p.showPicker(self)
+			
 		default:
 			println("Unspecified selection. Check your code!")
 		}
