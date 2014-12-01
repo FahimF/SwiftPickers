@@ -24,7 +24,6 @@ import UIKit
 	var hideCancel:Bool = false
 	var titleAttributes:NSDictionary? = nil
 	var attributedTitle:NSAttributedString? = nil
-	var popoverBGViewClass:AnyClass!
 
 	internal var pickerTitle:String = ""
 	internal var szView:CGSize!
@@ -155,15 +154,20 @@ import UIKit
 		}
 		isPresenting = true
 		if isiPad {
+			// Set up view for presenting as a popover
+			view.backgroundColor = UIColor.whiteColor()
+			vwContent.autoresizingMask = UIViewAutoresizing.None
+			var r = view.frame
+			r.size.height = vwContent.frame.size.height
+			view.frame = r
+			// Move content view up to be visible
+			r = vwContent.frame
+			r.origin.y = 0
+			vwContent.frame = r
 			// Present picker as popover
-			let vc = UIViewController()
-			vc.view = vwContent
-			vc.preferredContentSize = vwContent.frame.size
-			popOver = UIPopoverController(contentViewController:vc)
+			self.preferredContentSize = vwContent.frame.size
+			popOver = UIPopoverController(contentViewController:self)
 			popOver.delegate = self
-			if popoverBGViewClass != nil {
-				popOver.popoverBackgroundViewClass = popoverBGViewClass
-			}
 			popOver.presentPopoverFromBarButtonItem(btn, permittedArrowDirections:UIPopoverArrowDirection.Any, animated: true)
 		} else {
 			assert(false, "Can't present from bar button item on non-iPad devices.")
@@ -258,13 +262,15 @@ import UIKit
 	}
 	
 	private func showActionSheet(animated:Bool) {
-		self.view.backgroundColor = UIColor(white:0, alpha:0.5)
-		var r = vwContent.frame
-		r.origin.y = view.frame.size.height - r.size.height
-		let dur = animated ? animationDuration : 0
-		UIView.animateWithDuration(dur, delay:0, options:UIViewAnimationOptions.CurveEaseIn, animations:{
-			self.vwContent.frame = r
-			}, completion:nil)
+		if !isiPad {
+			view.backgroundColor = UIColor(white:0, alpha:0.5)
+			var r = vwContent.frame
+			r.origin.y = view.frame.size.height - r.size.height
+			let dur = animated ? animationDuration : 0
+			UIView.animateWithDuration(dur, delay:0, options:UIViewAnimationOptions.CurveEaseIn, animations:{
+				self.vwContent.frame = r
+				}, completion:nil)
+		}
 	}
 	
 	private func dismissWithButtonClick(btnIndex:Int, animated:Bool) {

@@ -9,6 +9,7 @@
 import UIKit
 
 class ViewController: UITableViewController {
+	let isiPad = UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Pad
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -26,38 +27,39 @@ class ViewController: UITableViewController {
 	
 	// MARK:- UITableView Delegates
 	override func tableView(tv:UITableView, didSelectRowAtIndexPath indexPath:NSIndexPath) {
+		var btn:UIBarButtonItem!
+		if isiPad {
+			btn = navigationItem.rightBarButtonItem
+		}
+		var p:BaseSwiftPicker!
 		switch (indexPath.section, indexPath.row) {
 		case (0,0):
-			let p = DateSwiftPicker(title:"Time Picker", mode:UIDatePickerMode.Time, date:NSDate(), done:{(pv, val) in
+			p = DateSwiftPicker(title:"Time Picker", mode:UIDatePickerMode.Time, date:NSDate(), done:{(pv, val) in
 				println("Selected Date/Value: \(val)")
 			}, cancel:{(pv) in
 				println("Cancelled selection")
 			})
-			p.showPicker(self)
 			
 		case (0,1):
-			let p = DateSwiftPicker(title:"Date Picker", mode:UIDatePickerMode.Date, date:NSDate(), done:{(pv, val) in
+			p = DateSwiftPicker(title:"Date Picker", mode:UIDatePickerMode.Date, date:NSDate(), done:{(pv, val) in
 				println("Selected Date/Value: \(val)")
 				}, cancel:{(pv) in
 					println("Cancelled selection")
 			})
-			p.showPicker(self)
 			
 		case (0,2):
-			let p = DateSwiftPicker(title:"Date & Time Picker", mode:UIDatePickerMode.DateAndTime, date:NSDate(), done:{(pv, val) in
+			p = DateSwiftPicker(title:"Date & Time Picker", mode:UIDatePickerMode.DateAndTime, date:NSDate(), done:{(pv, val) in
 				println("Selected Date/Value: \(val)")
 				}, cancel:{(pv) in
 					println("Cancelled selection")
 			})
-			p.showPicker(self)
 			
 		case (0,3):
-			let p = DateSwiftPicker(title:"Hour & Minue Picker", mode:UIDatePickerMode.CountDownTimer, date:NSDate(), done:{(pv, val) in
+			p = DateSwiftPicker(title:"Hour & Minue Picker", mode:UIDatePickerMode.CountDownTimer, date:NSDate(), done:{(pv, val) in
 				println("Selected Date/Value: \(val)")
 				}, cancel:{(pv) in
 					println("Cancelled selection")
 			})
-			p.showPicker(self)
 			
 		case (1,0):
 			var u = [UnitDefinition]()
@@ -66,12 +68,11 @@ class ViewController: UITableViewController {
 			d.endValue = 10
 			d.label = "kg"
 			u.append(d)
-			let p = NumericUnitSwiftPicker(title:"Weight Range", units:u, selections:[2], done:{(pv, vals) in
+			p = NumericUnitSwiftPicker(title:"Weight Range", units:u, selections:[2], done:{(pv, vals) in
 				println("Selected Value: \(vals)")
 				}, cancel:{(pv) in
 					println("Cancelled selection")
 			})
-			p.showPicker(self)
 			
 		case (1,1):
 			var u = [UnitDefinition]()
@@ -88,12 +89,11 @@ class ViewController: UITableViewController {
 			d.increment = 100
 			d.label = "g"
 			u.append(d)
-			let p = NumericUnitSwiftPicker(title:"Weight Range", units:u, selections:[2, 500], done:{(pv, vals) in
+			p = NumericUnitSwiftPicker(title:"Weight Range", units:u, selections:[2, 500], done:{(pv, vals) in
 				println("Selected Values: \(vals)")
 				}, cancel:{(pv) in
 					println("Cancelled selection")
 			})
-			p.showPicker(self)
 			
 		case (1,2):
 			var u = [UnitDefinition]()
@@ -117,12 +117,11 @@ class ViewController: UITableViewController {
 			d.increment = 10
 			d.label = "s"
 			u.append(d)
-			let p = NumericUnitSwiftPicker(title:"Hours, Minutes, Seconds", units:u, selections:[0, 5, 30], done:{(pv, vals) in
+			p = NumericUnitSwiftPicker(title:"Hours, Minutes, Seconds", units:u, selections:[0, 5, 30], done:{(pv, vals) in
 				println("Selected Values: \(vals)")
 				}, cancel:{(pv) in
 					println("Cancelled selection")
 			})
-			p.showPicker(self)
 			
 		case (1,3):
 			var u = [UnitDefinition]()
@@ -150,40 +149,43 @@ class ViewController: UITableViewController {
 			d.endValue = 10
 			d.label = "W"
 			u.append(d)
-			let p = NumericUnitSwiftPicker(title:"Four Corners", units:u, selections:[2,5,8,3], done:{(pv, vals) in
+			p = NumericUnitSwiftPicker(title:"Four Corners", units:u, selections:[2,5,8,3], done:{(pv, vals) in
 				println("Selected Values: \(vals)")
 				}, cancel:{(pv) in
 					println("Cancelled selection")
 			})
-			p.showPicker(self)
 			
 		case (2, 0):
 			let data = ["Red", "Blue", "Green", "Yellow"]
-			let p = StringSwiftPicker(title:"Colours", data:data, selected:0, done:{(pv, index, value) in
+			p = StringSwiftPicker(title:"Colours", data:data, selected:0, done:{(pv, index, value) in
 				println("Selected item: \(index) with value: \(value)")
 				}, cancel:{(pv) in
 					println("Cancelled selection")
 			})
-			p.showPicker(self)
 			
 		case (2, 1):
-			let p = TimeZoneSwiftPicker(title:"Time Zones", selected:NSTimeZone.defaultTimeZone(), done:{(pv, value) in
+			p = TimeZoneSwiftPicker(title:"Time Zones", selected:NSTimeZone.defaultTimeZone(), done:{(pv, value) in
 				println("Selected zone: \(value)")
 				}, cancel:{(pv) in
 					println("Cancelled selection")
 			})
-			p.showPicker(self)
 			
 		case (2, 2):
-			let p = FontSwiftPicker(title:"Fonts", selected:UIFont.systemFontOfSize(14), done:{(pv, value) in
+			p = FontSwiftPicker(title:"Fonts", selected:UIFont.systemFontOfSize(14), done:{(pv, value) in
 				println("Selected font: \(value)")
 				}, cancel:{(pv) in
 					println("Cancelled selection")
 			})
-			p.showPicker(self)
 			
 		default:
 			println("Unspecified selection. Check your code!")
+		}
+		if p != nil {
+			if isiPad {
+				p.showPicker(btn)
+			} else {
+				p.showPicker(self)
+			}
 		}
 	}
 }
