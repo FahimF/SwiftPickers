@@ -27,10 +27,6 @@ class ViewController: UITableViewController {
 	
 	// MARK:- UITableView Delegates
 	override func tableView(tv:UITableView, didSelectRowAtIndexPath indexPath:NSIndexPath) {
-		var btn:UIBarButtonItem!
-		if isiPad {
-			btn = navigationItem.rightBarButtonItem
-		}
 		var p:BaseSwiftPicker!
 		switch (indexPath.section, indexPath.row) {
 		case (0,0):
@@ -181,11 +177,7 @@ class ViewController: UITableViewController {
 			println("Unspecified selection. Check your code!")
 		}
 		if p != nil {
-			if isiPad {
-				p.showPicker(btn)
-			} else {
-				p.showPicker(self)
-			}
+			p.showPicker(self)
 		}
 	}
 }

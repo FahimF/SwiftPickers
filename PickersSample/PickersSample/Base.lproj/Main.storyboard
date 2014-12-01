@@ -202,9 +202,7 @@
                             <outlet property="delegate" destination="47a-Wm-U3d" id="Uat-a9-EkC"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Pickers" id="gT0-Bp-uMa">
-                        <barButtonItem key="rightBarButtonItem" title="Picker" id="Bxp-kL-VE9"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Pickers" id="gT0-Bp-uMa"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="62F-Om-7mC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

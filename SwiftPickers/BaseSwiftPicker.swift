@@ -11,12 +11,11 @@
 
 import UIKit
 
-@objc class BaseSwiftPicker: UIViewController, UIPopoverControllerDelegate {
+@objc class BaseSwiftPicker: UIViewController {
 	let kButtonValue = "buttonValue"
 	let kButtonTitle = "buttonTitle"
 	let kButtonAction = "buttonAction"
 	let kButtonTarget = "buttonTarget"
-	let isiPad = UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Pad
 	let version = (UIDevice.currentDevice().systemVersion as NSString).floatValue
 	let animationDuration = 0.25
 	
@@ -33,32 +32,27 @@ import UIKit
 	private var btnDone:UIBarButtonItem!
 	private var btnCancel:UIBarButtonItem!
 	private var vwContent:UIView!
-	private var popOver:UIPopoverController!
 	private var isPresenting = false
 	
 	// MARK:- Initializers
 	override init() {
 		super.init()
 		// Picker size
-		if isiPad {
-			szView = CGSize(width:320, height:320)
+		if version >= 8.0 {
+			// iOS 8.x or later
+			szView = UIScreen.mainScreen().bounds.size
 		} else {
-			if version >= 8.0 {
-				// iOS 8.x or later
-				szView = UIScreen.mainScreen().bounds.size
+			// iOS 7.x
+			let sz = UIScreen.mainScreen().bounds.size
+			if UIInterfaceOrientationIsPortrait(UIApplication.sharedApplication().statusBarOrientation) {
+				szView = sz
 			} else {
-				// iOS 7.x
-				let sz = UIScreen.mainScreen().bounds.size
-				if UIInterfaceOrientationIsPortrait(UIApplication.sharedApplication().statusBarOrientation) {
-					szView = sz
-				} else {
-					szView.width = sz.height
-					szView.height = sz.width
-				}
+				szView.width = sz.height
+				szView.height = sz.width
 			}
 		}
 		// Content view
-		vwContent = UIView(frame:CGRect(x:0, y:szView.height, width:szView.width, height:260))
+		vwContent = UIView(frame:CGRect(x:0, y:szView.height, width:szView.width, height:320))
 		vwContent.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleTopMargin
 		// Toolbar
 		toolbar = UIToolbar(frame:CGRect(x:0, y:0, width:szView.width, height:44))
@@ -143,37 +137,6 @@ import UIKit
 		vc.view.addSubview(view)
 	}
 	
-	func showPicker(btn:UIBarButtonItem) {
-		setupToolbar()
-		// Get picker (this is handled by sub-classes)
-		vwPicker = configuredPickerView()
-		if vwPicker != nil {
-			vwContent.addSubview(vwPicker)
-		} else {
-			assert(false, "Picker view failed to instantiate, perhaps you have invalid component data.")
-		}
-		isPresenting = true
-		if isiPad {
-			// Set up view for presenting as a popover
-			view.backgroundColor = UIColor.whiteColor()
-			vwContent.autoresizingMask = UIViewAutoresizing.None
-			var r = view.frame
-			r.size.height = vwContent.frame.size.height
-			view.frame = r
-			// Move content view up to be visible
-			r = vwContent.frame
-			r.origin.y = 0
-			vwContent.frame = r
-			// Present picker as popover
-			self.preferredContentSize = vwContent.frame.size
-			popOver = UIPopoverController(contentViewController:self)
-			popOver.delegate = self
-			popOver.presentPopoverFromBarButtonItem(btn, permittedArrowDirections:UIPopoverArrowDirection.Any, animated: true)
-		} else {
-			assert(false, "Can't present from bar button item on non-iPad devices.")
-		}
-	}
-	
 	func didRotate(nt:NSNotification) {
 		let curr = UIDevice.currentDevice().orientation
 		if let w = UIApplication.sharedApplication().keyWindow {
@@ -250,27 +213,18 @@ import UIKit
 	}
 	
 	private func dismissPicker() {
-		if isiPad {
-			if popOver != nil && popOver.popoverVisible {
-				popOver.dismissPopoverAnimated(true)
-			}
-		} else {
-			dismissWithButtonClick(0, animated:true)
-		}
+		dismissWithButtonClick(0, animated:true)
 		isPresenting = false
-		popOver = nil
 	}
 	
 	private func showActionSheet(animated:Bool) {
-		if !isiPad {
-			view.backgroundColor = UIColor(white:0, alpha:0.5)
-			var r = vwContent.frame
-			r.origin.y = view.frame.size.height - r.size.height
-			let dur = animated ? animationDuration : 0
-			UIView.animateWithDuration(dur, delay:0, options:UIViewAnimationOptions.CurveEaseIn, animations:{
-				self.vwContent.frame = r
-				}, completion:nil)
-		}
+		view.backgroundColor = UIColor(white:0, alpha:0.5)
+		var r = vwContent.frame
+		r.origin.y = view.frame.size.height - r.size.height
+		let dur = animated ? animationDuration : 0
+		UIView.animateWithDuration(dur, delay:0, options:UIViewAnimationOptions.CurveEaseIn, animations:{
+			self.vwContent.frame = r
+			}, completion:nil)
 	}
 	
 	private func dismissWithButtonClick(btnIndex:Int, animated:Bool) {
@@ -283,11 +237,5 @@ import UIKit
 			}, completion:{(finished) in
 				self.view.removeFromSuperview()
 		})
-	}
-	
-	// MARK:- UIPopoverController Delegate Methods
-	func popoverControllerDidDismissPopover(povc:UIPopoverController) {
-		// Notify target
-		cancelTapped()
 	}
 }
