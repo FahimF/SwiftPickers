@@ -9,7 +9,7 @@ This is a Swift port of [ActionSheetPicker-3.0](https://github.com/skywinder/Act
 
 The basic functionality of SwiftPicker can be seen in the following animated GIF:
 
-![SwiftPickerSampler](https://cloud.githubusercontent.com/assets/181110/5240854/e4112ee2-7949-11e4-9d8c-e2a09c703472.gif "SwiftPickerSampler")
+![SwiftPickerSampler](https://cloud.githubusercontent.com/assets/181110/5241312/f18765ea-7954-11e4-8d37-f33882e0c380.gif "SwiftPickerSampler")
 
 SwiftPicker also contains a button component which allows you to configure your picker and display it on screen easily via the button. The button will display the current selection value as its label.
 
