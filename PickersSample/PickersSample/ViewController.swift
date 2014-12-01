@@ -174,6 +174,14 @@ class ViewController: UITableViewController {
 			})
 			p.showPicker(self)
 			
+		case (2, 2):
+			let p = FontSwiftPicker(title:"Fonts", selected:UIFont.systemFontOfSize(14), done:{(pv, value) in
+				println("Selected font: \(value)")
+				}, cancel:{(pv) in
+					println("Cancelled selection")
+			})
+			p.showPicker(self)
+			
 		default:
 			println("Unspecified selection. Check your code!")
 		}

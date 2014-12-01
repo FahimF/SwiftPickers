@@ -131,17 +131,6 @@ class TimeZoneSwiftPicker: BaseSwiftPicker, UIPickerViewDelegate, UIPickerViewDa
 		return lbl
 	}
 	
-	func pickerView(pv:UIPickerView, titleForRow row:Int, forComponent component:Int) -> String! {
-		if component == 0 {
-			return continents[row] as String
-		} else if component == 1 {
-			if let arr = cities[selCont] as? NSArray {
-				return arr[row] as String
-			}
-		}
-		return nil
-	}
-	
 	func pickerView(pv:UIPickerView, didSelectRow row:Int, inComponent component:Int) {
 		if component == 0 {
 			selCont = continents[row] as String
