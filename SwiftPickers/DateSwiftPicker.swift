@@ -26,11 +26,15 @@ class DateSwiftPicker: BaseSwiftPicker {
 	private var cancel:((DateSwiftPicker)->Void)!
 	
 	// MARK:- Initializers
-	convenience init(title:String, mode:UIDatePickerMode, date:NSDate, done:((DateSwiftPicker, AnyObject)->Void), cancel:((DateSwiftPicker)->Void)) {
+	convenience init(title:String, mode:UIDatePickerMode, selected:AnyObject, done:((DateSwiftPicker, AnyObject)->Void), cancel:((DateSwiftPicker)->Void)) {
 		self.init()
 		self.pickerTitle = title
 		self.mode = mode
-		self.selectedDate = date
+		if mode == UIDatePickerMode.CountDownTimer {
+			self.countDown = selected as Double
+		} else {
+			self.selectedDate = selected as NSDate
+		}
 		self.done = done
 		self.cancel = cancel
 	}

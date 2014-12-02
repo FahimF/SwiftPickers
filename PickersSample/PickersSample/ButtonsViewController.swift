@@ -10,12 +10,15 @@ import UIKit
 
 class ButtonsViewController: UIViewController {
 	@IBOutlet var btnString:StringPickerButton!
+	@IBOutlet var btnDate:DatePickerButton!
 	
     override func viewDidLoad() {
         super.viewDidLoad()
 		// String picker
 		btnString.viewController = self
 		btnString.data = ["Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet" ]
+		// Date picker
+		btnDate.viewController = self			
     }
 
     override func didReceiveMemoryWarning() {

@@ -30,28 +30,28 @@ class ViewController: UITableViewController {
 		var p:BaseSwiftPicker!
 		switch (indexPath.section, indexPath.row) {
 		case (0,0):
-			p = DateSwiftPicker(title:"Time Picker", mode:UIDatePickerMode.Time, date:NSDate(), done:{(pv, val) in
+			p = DateSwiftPicker(title:"Time Picker", mode:UIDatePickerMode.Time, selected:NSDate(), done:{(pv, val) in
 				println("Selected Date/Value: \(val)")
 			}, cancel:{(pv) in
 				println("Cancelled selection")
 			})
 			
 		case (0,1):
-			p = DateSwiftPicker(title:"Date Picker", mode:UIDatePickerMode.Date, date:NSDate(), done:{(pv, val) in
+			p = DateSwiftPicker(title:"Date Picker", mode:UIDatePickerMode.Date, selected:NSDate(), done:{(pv, val) in
 				println("Selected Date/Value: \(val)")
 				}, cancel:{(pv) in
 					println("Cancelled selection")
 			})
 			
 		case (0,2):
-			p = DateSwiftPicker(title:"Date & Time Picker", mode:UIDatePickerMode.DateAndTime, date:NSDate(), done:{(pv, val) in
+			p = DateSwiftPicker(title:"Date & Time Picker", mode:UIDatePickerMode.DateAndTime, selected:NSDate(), done:{(pv, val) in
 				println("Selected Date/Value: \(val)")
 				}, cancel:{(pv) in
 					println("Cancelled selection")
 			})
 			
 		case (0,3):
-			p = DateSwiftPicker(title:"Hour & Minue Picker", mode:UIDatePickerMode.CountDownTimer, date:NSDate(), done:{(pv, val) in
+			p = DateSwiftPicker(title:"Hour & Minue Picker", mode:UIDatePickerMode.CountDownTimer, selected:60, done:{(pv, val) in
 				println("Selected Date/Value: \(val)")
 				}, cancel:{(pv) in
 					println("Cancelled selection")

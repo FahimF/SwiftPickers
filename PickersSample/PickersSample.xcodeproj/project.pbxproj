@@ -15,6 +15,7 @@
 		DD1E42E01A2BEFC800474755 /* ButtonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1E42DF1A2BEFC800474755 /* ButtonsViewController.swift */; };
 		DD1E42E21A2BF0BF00474755 /* BasePickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1E42E11A2BF0BF00474755 /* BasePickerButton.swift */; };
 		DD1E42E41A2BFEA800474755 /* StringPickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1E42E31A2BFEA800474755 /* StringPickerButton.swift */; };
+		DD914A3F1A2DA71C00A15F9C /* DatePickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD914A3E1A2DA71C00A15F9C /* DatePickerButton.swift */; };
 		DDC84CC81A293FE800040F0F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC84CC71A293FE800040F0F /* AppDelegate.swift */; };
 		DDC84CCA1A293FE800040F0F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC84CC91A293FE800040F0F /* ViewController.swift */; };
 		DDC84CCD1A293FE800040F0F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDC84CCB1A293FE800040F0F /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 		DD1E42DF1A2BEFC800474755 /* ButtonsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonsViewController.swift; sourceTree = "<group>"; };
 		DD1E42E11A2BF0BF00474755 /* BasePickerButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePickerButton.swift; sourceTree = "<group>"; };
 		DD1E42E31A2BFEA800474755 /* StringPickerButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringPickerButton.swift; sourceTree = "<group>"; };
+		DD914A3E1A2DA71C00A15F9C /* DatePickerButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerButton.swift; sourceTree = "<group>"; };
 		DDC84CC21A293FE800040F0F /* PickersSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PickersSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDC84CC61A293FE800040F0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DDC84CC71A293FE800040F0F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -99,16 +101,17 @@
 		DDC84CE71A29409700040F0F /* SwiftPickers */ = {
 			isa = PBXGroup;
 			children = (
+				DD1E42E11A2BF0BF00474755 /* BasePickerButton.swift */,
 				DDC84CE81A2941E600040F0F /* BaseSwiftPicker.swift */,
 				DD050FD91A2AABE6009F601E /* CustomSwiftPicker.swift */,
+				DD914A3E1A2DA71C00A15F9C /* DatePickerButton.swift */,
 				DD050FD11A2AAB77009F601E /* DateSwiftPicker.swift */,
 				DD050FD71A2AABC0009F601E /* FontSwiftPicker.swift */,
 				DD050FD31A2AAB9E009F601E /* NumericUnitSwiftPicker.swift */,
+				DD1E42E31A2BFEA800474755 /* StringPickerButton.swift */,
 				DDC84CEE1A29AA8200040F0F /* StringSwiftPicker.swift */,
 				DD1E42DD1A2B2CAC00474755 /* TimeZoneSwiftPicker.swift */,
 				DDC84CEC1A296C4F00040F0F /* UIDevice-Extras.swift */,
-				DD1E42E11A2BF0BF00474755 /* BasePickerButton.swift */,
-				DD1E42E31A2BFEA800474755 /* StringPickerButton.swift */,
 			);
 			name = SwiftPickers;
 			path = ../SwiftPickers;
@@ -193,6 +196,7 @@
 				DDC84CCA1A293FE800040F0F /* ViewController.swift in Sources */,
 				DD1E42DE1A2B2CAC00474755 /* TimeZoneSwiftPicker.swift in Sources */,
 				DDC84CEF1A29AA8200040F0F /* StringSwiftPicker.swift in Sources */,
+				DD914A3F1A2DA71C00A15F9C /* DatePickerButton.swift in Sources */,
 				DDC84CC81A293FE800040F0F /* AppDelegate.swift in Sources */,
 				DDC84CED1A296C4F00040F0F /* UIDevice-Extras.swift in Sources */,
 				DD050FD21A2AAB77009F601E /* DateSwiftPicker.swift in Sources */,

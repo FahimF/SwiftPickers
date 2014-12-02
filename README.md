@@ -1,9 +1,21 @@
 SwiftPickers 
 ============
 
-[![License](https://img.shields.io/cocoapods/l/ActionSheetPicker-3.0.svg)](http://cocoadocs.org/docsets/ActionSheetPicker-3.0)
-[![Platform](https://img.shields.io/cocoapods/p/ActionSheetPicker-3.0.svg)](http://cocoadocs.org/docsets/ActionSheetPicker-3.0)
-[![Issues](http://img.shields.io/github/issues/skywinder/ActionSheetPicker-3.0.svg)](https://github.com/FahimF/SwiftPickers/issues?state=open)
+[![Language](http://img.shields.io/badge/language-Swift-yellow.svg)](https://developer.apple.com/swift/)
+[![Platform](http://img.shields.io/badge/platform-ios-blue.svg)](https://developer.apple.com/iphone/index.action)
+[![License](http://img.shields.io/badge/license-BSD-orange.svg)](http://opensource.org/licenses/BSD-3-Clause)
+[![Issues](http://img.shields.io/github/issues/FahimF/SwiftPickers.svg)](https://github.com/FahimF/SwiftPickers/issues?state=open)
+
+- [Overview](#overview)
+- [Installation](#installation)
+	- [Pickers](#pickers)
+	- [Button Pickers](#button-pickers)
+		- [Via Interface Builder](#via-interface-builder)
+		- [Via Code](#via-code)
+- [Credits](#credits)
+- [Questions](#questions)
+
+## Overview ##
 
 This is a Swift port of [ActionSheetPicker-3.0](https://github.com/skywinder/ActionSheetPicker-3.0/). However, this project contains some functionality which is different from the original component and certain design decisions have been taken to keep things simpler for this version.
 
@@ -13,17 +25,30 @@ The basic functionality of SwiftPicker can be seen in the following animated GIF
 
 SwiftPicker also contains a button component which allows you to configure your picker and display it on screen easily via the button. The button will display the current selection value as its label.
 
-**Note:** Currently, the code has only been tested on iPhone. The code is supposed to work on iPad as well but I cannot guarantee that it will till I've had a chance to test the iPad functionality :)
-
 Further documentation will be coming in the future once I've managed to add all the picker functionality.
 
+## Installation ##
 
-## Credits
+You can install the `SwiftPicker` components two ways:
 
-- ActionSheetPicker was originally created by [Tim Cinel](http://github.com/TimCinel) ([@TimCinel](http://twitter.com/TimCinel))
-- The version of the code that I used as the basis for this version of SwiftPickers was created by [Petr Korolev](http://github.com/skywinder)
+### Pickers ###
 
-## Questions?
+The picker components are not visual components that can be added via Interface Builder. Instead, you have to create them via code.
+
+### Button Pickers ###
+
+The button picker components can be added to your application two different ways:
+
+#### Via Interface Builder ####
+
+#### Via Code ####
+
+## Credits ##
+
+- The inspiration for `SwiftPickers`, ActionSheetPicker, was originally created by [Tim Cinel](http://github.com/TimCinel) ([@TimCinel](http://twitter.com/TimCinel))
+- The version of the code that I used as the basis for this version of `SwiftPickers` was created by [Petr Korolev](http://github.com/skywinder)
+
+## Questions? ##
 
 * Email: [fahimf (at) gmail (dot) com](mailto:fahimf (at) gmail.com)
 * Web: [http://rooksoft.sg/](http://rooksoft.sg/)
