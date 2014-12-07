@@ -103,11 +103,8 @@ import UIKit
 		setupToolbar()
 		// Get picker (this is handled by sub-classes)
 		vwPicker = configuredPickerView()
-		if vwPicker != nil {
-			vwContent.addSubview(vwPicker)
-		} else {
-			assert(false, "Picker view failed to instantiate, perhaps you have invalid component data.")
-		}
+		assert(vwPicker != nil, "Picker view failed to instantiate, perhaps you have invalid component data.")
+		vwContent.addSubview(vwPicker)
 		isPresenting = true
 		vc.addChildViewController(self)
 		// Force close keyboard (if visible)

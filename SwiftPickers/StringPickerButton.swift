@@ -42,12 +42,8 @@ class StringPickerButton: BasePickerButton {
 	
 	// MARK:- Overrides
 	override func buttonTapped() {
-		if viewController == nil {
-			assert(false, "The view controller for the picker has to be set first.")
-		}
-		if data == nil {
-			assert(false, "The data for the picker has to be set first.")
-		}
+		assert(viewController != nil, "The view controller for the picker has to be set first.")
+		assert(data != nil, "The data for the picker has to be set first.")
 		let p = StringSwiftPicker(title:pickerTitle, data:data, selected:selectedIndex, done:{(pv, index, value) in
 			self.setTitle(value, forState:UIControlState.Normal)
 			self.selectedIndex = index

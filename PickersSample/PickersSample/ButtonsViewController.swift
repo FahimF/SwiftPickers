@@ -39,6 +39,10 @@ class ButtonsViewController: UIViewController, CustomPickerDelegate {
 		// Time Zone picker
 		btnTimeZone.viewController = self
 		// Numeric Unit picker
+		btnNumeric.viewController = self
+		let u = UnitDefinition(label:"kg", start:0, end:10)
+		btnNumeric.units = [u]
+		btnNumeric.selections = [2]
 		// Custom picker
 		btnCustom.viewController = self
 		btnCustom.delegate = self

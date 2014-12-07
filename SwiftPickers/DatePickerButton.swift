@@ -53,9 +53,7 @@ class DatePickerButton: BasePickerButton {
 	}
 	
 	override func buttonTapped() {
-		if viewController == nil {
-			assert(false, "The view controller for the picker has to be set first.")
-		}
+		assert(viewController != nil, "The view controller for the picker has to be set first.")
 		let p = DateSwiftPicker(title:pickerTitle, mode:mode, selected:selectedValue, done:{(pv, value) in
 			self.selectedValue = value
 			self.setTitle()

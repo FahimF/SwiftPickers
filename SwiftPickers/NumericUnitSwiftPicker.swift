@@ -13,6 +13,17 @@ struct UnitDefinition {
 	var endValue = 1
 	var increment = 1
 	var label = "None"
+	
+	init() {
+		
+	}
+	
+	init(label:String, start:Int, end:Int, increment:Int=1) {
+		self.label = label
+		self.startValue = start
+		self.endValue = end
+		self.increment = increment
+	}
 }
 
 class NumericUnitSwiftPicker: BaseSwiftPicker, UIPickerViewDelegate, UIPickerViewDataSource {
