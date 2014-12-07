@@ -262,7 +262,7 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a9k-YN-tub" userLabel="Time Picker" customClass="DatePickerButton" customModule="PickersSample">
-                                <rect key="frame" x="16" y="120" width="46" height="30"/>
+                                <rect key="frame" x="16" y="120" width="280" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="wu2-Ob-bc8"/>
                                 </constraints>
@@ -274,7 +274,7 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DNX-Ba-IHC" userLabel="Date &amp; Time Picker" customClass="DatePickerButton" customModule="PickersSample">
-                                <rect key="frame" x="70" y="120" width="514" height="30"/>
+                                <rect key="frame" x="304" y="120" width="280" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="yht-gz-lwu"/>
                                 </constraints>
@@ -286,7 +286,7 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r7z-nz-qwB" userLabel="Font Picker" customClass="FontPickerButton" customModule="PickersSample">
-                                <rect key="frame" x="16" y="158" width="46" height="30"/>
+                                <rect key="frame" x="16" y="158" width="79" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="WCr-vd-KiT"/>
                                 </constraints>
@@ -297,32 +297,81 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="pickerTitle" value="Font Picker"/>
                                 </userDefinedRuntimeAttributes>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oiP-7K-gZk" userLabel="TimeZone Picker" customClass="TimeZonePickerButton" customModule="PickersSample">
+                                <rect key="frame" x="103" y="158" width="79" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="DBY-ZD-vxj"/>
+                                </constraints>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="pickerTitle" value="TimeZone Picker"/>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mHh-FO-cQS" userLabel="Numeric Picker" customClass="NumericUnitPickerButton" customModule="PickersSample">
+                                <rect key="frame" x="16" y="196" width="79" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="9hL-DD-7b0"/>
+                                </constraints>
+                                <state key="normal" title="Font Picker">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="pickerTitle" value="Numeric Picker"/>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fwd-Tw-xg3" userLabel="Custom Picker" customClass="CustomPickerButton" customModule="PickersSample">
+                                <rect key="frame" x="103" y="196" width="79" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="jh5-tW-Kxt"/>
+                                </constraints>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="pickerTitle" value="TimeZone Picker"/>
+                                </userDefinedRuntimeAttributes>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Fwd-Tw-xg3" secondAttribute="trailing" constant="16" id="0jZ-XP-ps9"/>
                             <constraint firstItem="r7z-nz-qwB" firstAttribute="leading" secondItem="8XQ-Gr-TB8" secondAttribute="leading" constant="16" id="16L-db-T5A"/>
+                            <constraint firstItem="oiP-7K-gZk" firstAttribute="top" secondItem="a9k-YN-tub" secondAttribute="bottom" constant="8" id="EWA-is-s4e"/>
                             <constraint firstItem="r7z-nz-qwB" firstAttribute="top" secondItem="a9k-YN-tub" secondAttribute="bottom" constant="8" id="HgY-qw-1rs"/>
+                            <constraint firstItem="r7z-nz-qwB" firstAttribute="width" secondItem="oiP-7K-gZk" secondAttribute="width" id="J1c-r1-4zd"/>
+                            <constraint firstItem="Fwd-Tw-xg3" firstAttribute="width" secondItem="mHh-FO-cQS" secondAttribute="width" id="KwN-wf-T7g"/>
+                            <constraint firstItem="oiP-7K-gZk" firstAttribute="leading" secondItem="r7z-nz-qwB" secondAttribute="trailing" constant="8" id="N4A-Ig-A00"/>
                             <constraint firstItem="JcG-i4-3By" firstAttribute="leading" secondItem="QeV-Ia-Gp5" secondAttribute="trailing" constant="8" id="Peh-rm-bSE"/>
                             <constraint firstItem="QeV-Ia-Gp5" firstAttribute="width" secondItem="JcG-i4-3By" secondAttribute="width" id="Swy-SW-ncJ"/>
+                            <constraint firstItem="Fwd-Tw-xg3" firstAttribute="top" secondItem="oiP-7K-gZk" secondAttribute="bottom" constant="8" id="YaQ-Tb-tof"/>
                             <constraint firstItem="a9k-YN-tub" firstAttribute="top" secondItem="QeV-Ia-Gp5" secondAttribute="bottom" constant="8" id="Zki-E9-9GX"/>
                             <constraint firstItem="DNX-Ba-IHC" firstAttribute="width" secondItem="a9k-YN-tub" secondAttribute="width" id="ay8-wI-lMy"/>
                             <constraint firstItem="QeV-Ia-Gp5" firstAttribute="top" secondItem="w1A-t9-isG" secondAttribute="bottom" constant="18" id="cSa-yE-Y2z"/>
                             <constraint firstItem="DNX-Ba-IHC" firstAttribute="leading" secondItem="a9k-YN-tub" secondAttribute="trailing" constant="8" id="e44-EU-DwJ"/>
+                            <constraint firstItem="mHh-FO-cQS" firstAttribute="top" secondItem="r7z-nz-qwB" secondAttribute="bottom" constant="8" id="eHM-fk-hAk"/>
+                            <constraint firstItem="Fwd-Tw-xg3" firstAttribute="leading" secondItem="mHh-FO-cQS" secondAttribute="trailing" constant="8" id="hTs-YO-KRI"/>
                             <constraint firstAttribute="trailing" secondItem="JcG-i4-3By" secondAttribute="trailing" constant="16" id="hdL-HI-3gd"/>
+                            <constraint firstItem="mHh-FO-cQS" firstAttribute="leading" secondItem="8XQ-Gr-TB8" secondAttribute="leading" constant="16" id="iEG-YP-a2n"/>
                             <constraint firstItem="QeV-Ia-Gp5" firstAttribute="leading" secondItem="8XQ-Gr-TB8" secondAttribute="leading" constant="16" id="ibF-vN-8UI"/>
                             <constraint firstItem="DNX-Ba-IHC" firstAttribute="top" secondItem="JcG-i4-3By" secondAttribute="bottom" constant="8" id="m1w-A4-icu"/>
                             <constraint firstItem="JcG-i4-3By" firstAttribute="top" secondItem="w1A-t9-isG" secondAttribute="bottom" constant="18" id="p8n-Kh-RSv"/>
                             <constraint firstItem="a9k-YN-tub" firstAttribute="leading" secondItem="8XQ-Gr-TB8" secondAttribute="leading" constant="16" id="u4F-j4-7gx"/>
                             <constraint firstAttribute="trailing" secondItem="DNX-Ba-IHC" secondAttribute="trailing" constant="16" id="xDM-gV-t9o"/>
+                            <constraint firstAttribute="trailing" secondItem="oiP-7K-gZk" secondAttribute="trailing" constant="16" id="zet-qW-A8Y"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Chevron Buttons" id="YOR-ut-2Fc"/>
                     <connections>
+                        <outlet property="btnCustom" destination="Fwd-Tw-xg3" id="0HR-5D-NWA"/>
                         <outlet property="btnDate" destination="JcG-i4-3By" id="UaD-ep-VmJ"/>
                         <outlet property="btnDateTime" destination="DNX-Ba-IHC" id="HRH-Ya-2Vt"/>
                         <outlet property="btnFont" destination="r7z-nz-qwB" id="Egq-3K-IB9"/>
+                        <outlet property="btnNumeric" destination="mHh-FO-cQS" id="tVo-48-2Xp"/>
                         <outlet property="btnString" destination="QeV-Ia-Gp5" id="Rw5-mL-GF0"/>
                         <outlet property="btnTime" destination="a9k-YN-tub" id="ZhH-mT-b8z"/>
+                        <outlet property="btnTimeZone" destination="oiP-7K-gZk" id="6wU-fX-qdA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p3z-on-MjR" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -8,12 +8,17 @@
 
 import UIKit
 
-class ButtonsViewController: UIViewController {
+class ButtonsViewController: UIViewController, CustomPickerDelegate {
 	@IBOutlet var btnString:StringPickerButton!
 	@IBOutlet var btnDateTime:DatePickerButton!
 	@IBOutlet var btnDate:DatePickerButton!
 	@IBOutlet var btnTime:DatePickerButton!
 	@IBOutlet var btnFont:FontPickerButton!
+	@IBOutlet var btnTimeZone:TimeZonePickerButton!
+	@IBOutlet var btnNumeric:NumericUnitPickerButton!
+	@IBOutlet var btnCustom:CustomPickerButton!
+	
+	private var data = ["String Picker", "Date Picker", "Time Picker", "Date & Time Picker", "Time Zone Picker", "Font Picker", "Custom Picker"]
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,10 +36,37 @@ class ButtonsViewController: UIViewController {
 		// Font picker
 		btnFont.viewController = self
 		btnFont.selectedValue = UIFont(name:"Georgia", size:16)!
+		// Time Zone picker
+		btnTimeZone.viewController = self
+		// Numeric Unit picker
+		// Custom picker
+		btnCustom.viewController = self
+		btnCustom.delegate = self
+		if let sel = data.last {
+			btnCustom.setTitle(sel)
+		}
+		btnCustom.picked = {(picker) in
+			// Set selection as button title
+			let row = picker.selectedRowInComponent(0)
+			let sel = self.data[row]
+			self.btnCustom.setTitle(sel)
+		}
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+	
+	// MARK:- Custom Picker Delegates
+	func numberOfComponentsInPickerView(pv:UIPickerView) -> Int {
+		return 1
+	}
+	
+	func pickerView(pv:UIPickerView, numberOfRowsInComponent component:Int) -> Int {
+		return data.count
+	}
+	
+	func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+		return data[row]
+	}
 }

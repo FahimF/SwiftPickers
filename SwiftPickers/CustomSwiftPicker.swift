@@ -16,10 +16,11 @@ protocol CustomPickerDelegate: UIPickerViewDelegate, UIPickerViewDataSource {
 }
 
 class CustomSwiftPicker: BaseSwiftPicker {
+	var picker:UIPickerView!
+
 	private var delegate:CustomPickerDelegate!
 	private var done:((CustomSwiftPicker, UIPickerView)->Void)!
 	private var cancel:((CustomSwiftPicker)->Void)!
-	private var picker:UIPickerView!
 	
 	// MARK:- Initializers
 	init(title:String, delegate:CustomPickerDelegate, done:((CustomSwiftPicker, UIPickerView)->Void), cancel:((CustomSwiftPicker)->Void)) {

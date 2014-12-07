@@ -73,5 +73,6 @@ import UIKit
 		contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left
 		chevronColor = tintColor
 		addTarget(self, action:"buttonTapped", forControlEvents:UIControlEvents.TouchUpInside)
+		setTitle(classForCoder.description(), forState:UIControlState.Normal)
 	}
 }

@@ -18,6 +18,7 @@
 		DD5EAC6C1A342FDE00EA245C /* TimeZonePickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5EAC6B1A342FDE00EA245C /* TimeZonePickerButton.swift */; };
 		DD5EAC6E1A342FED00EA245C /* FontPickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5EAC6D1A342FED00EA245C /* FontPickerButton.swift */; };
 		DD5EAC701A342FFC00EA245C /* CustomPickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5EAC6F1A342FFC00EA245C /* CustomPickerButton.swift */; };
+		DD5EAC721A34374700EA245C /* NumericUnitPickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5EAC711A34374700EA245C /* NumericUnitPickerButton.swift */; };
 		DD914A3F1A2DA71C00A15F9C /* DatePickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD914A3E1A2DA71C00A15F9C /* DatePickerButton.swift */; };
 		DDC84CC81A293FE800040F0F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC84CC71A293FE800040F0F /* AppDelegate.swift */; };
 		DDC84CCA1A293FE800040F0F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC84CC91A293FE800040F0F /* ViewController.swift */; };
@@ -41,6 +42,7 @@
 		DD5EAC6B1A342FDE00EA245C /* TimeZonePickerButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeZonePickerButton.swift; sourceTree = "<group>"; };
 		DD5EAC6D1A342FED00EA245C /* FontPickerButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontPickerButton.swift; sourceTree = "<group>"; };
 		DD5EAC6F1A342FFC00EA245C /* CustomPickerButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPickerButton.swift; sourceTree = "<group>"; };
+		DD5EAC711A34374700EA245C /* NumericUnitPickerButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumericUnitPickerButton.swift; sourceTree = "<group>"; };
 		DD914A3E1A2DA71C00A15F9C /* DatePickerButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerButton.swift; sourceTree = "<group>"; };
 		DDC84CC21A293FE800040F0F /* PickersSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PickersSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDC84CC61A293FE800040F0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				DD050FD11A2AAB77009F601E /* DateSwiftPicker.swift */,
 				DD5EAC6D1A342FED00EA245C /* FontPickerButton.swift */,
 				DD050FD71A2AABC0009F601E /* FontSwiftPicker.swift */,
+				DD5EAC711A34374700EA245C /* NumericUnitPickerButton.swift */,
 				DD050FD31A2AAB9E009F601E /* NumericUnitSwiftPicker.swift */,
 				DD1E42E31A2BFEA800474755 /* StringPickerButton.swift */,
 				DDC84CEE1A29AA8200040F0F /* StringSwiftPicker.swift */,
@@ -199,6 +202,7 @@
 				DD050FDA1A2AABE6009F601E /* CustomSwiftPicker.swift in Sources */,
 				DDC84CE91A2941E600040F0F /* BaseSwiftPicker.swift in Sources */,
 				DD5EAC6E1A342FED00EA245C /* FontPickerButton.swift in Sources */,
+				DD5EAC721A34374700EA245C /* NumericUnitPickerButton.swift in Sources */,
 				DD050FD41A2AAB9E009F601E /* NumericUnitSwiftPicker.swift in Sources */,
 				DD1E42E21A2BF0BF00474755 /* BasePickerButton.swift in Sources */,
 				DD1E42E41A2BFEA800474755 /* StringPickerButton.swift in Sources */,
