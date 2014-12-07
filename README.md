@@ -19,29 +19,63 @@ SwiftPickers
 
 This is a Swift port of [ActionSheetPicker-3.0](https://github.com/skywinder/ActionSheetPicker-3.0/). However, this project contains some functionality which is different from the original component and certain design decisions have been taken to keep things simpler for this version.
 
-The basic functionality of SwiftPicker can be seen in the following animated GIF:
+The `SwiftPicker` components can be used in one of two ways - you can either invoke the picker directly from code:
 
-![SwiftPickerSampler](https://cloud.githubusercontent.com/assets/181110/5241312/f18765ea-7954-11e4-8d37-f33882e0c380.gif "SwiftPickerSampler")
+![swift-pickers](https://cloud.githubusercontent.com/assets/181110/5330510/142547dc-7e34-11e4-9d32-4dba71480d8c.gif)
 
-SwiftPicker also contains a button component which allows you to configure your picker and display it on screen easily via the button. The button will display the current selection value as its label.
+Or, you can use the easy to use picker buttons which can be added to a storyboard or instantiated via. The buttons require a couple of lines to set up the picker and then the button will handle the rest:
 
-Further documentation will be coming in the future once I've managed to add all the picker functionality.
+![picker-buttons](https://cloud.githubusercontent.com/assets/181110/5330509/141fb6a0-7e34-11e4-9fff-b64beeb96be7.gif)
+
+As you will note above, each button displays the current selection value as its title.
 
 ## Installation ##
 
-You can install the `SwiftPicker` components two ways:
+You can use the `SwiftPicker` components two ways:
 
 ### Pickers ###
 
-The picker components are not visual components that can be added via Interface Builder. Instead, you have to create them via code.
+The basic picker components of `SwiftPickers` are not visual components that can be added via Interface Builder. Instead, you have to create them via code.
+
+There are several different picker components depending on the type of value you want to display but one of the most basic picker components is the `StringSwiftPicker`, which allows you to pick a value from a list of string values passed to the picker.
+
+Instantiating and invoking a `StringSwiftPicker` is as simple as:
+```Swift
+let data = ["Red", "Blue", "Green", "Yellow"]
+let p = StringSwiftPicker(title:"Colours", data:data, selected:0, done:{(pv, index, value) in
+	println("Selected item: \(index) with value: \(value)")
+}, cancel:{(pv) in
+	println("Cancelled selection")
+})
+p.showPicker(self)
+```
+
+**Note:** Till the documentation is updated to reflect all functionality, refer to the `ViewController.swift` file in the included sample project for all the different ways that the various picker components can be invoked via code. 
 
 ### Button Pickers ###
 
-The button picker components can be added to your application two different ways:
+The button picker components are the visual components in the `SwiftPicker` collection. They can be added to your application in two different ways:
 
 #### Via Interface Builder ####
 
+- Add a standard `UIButton` instance to your view on your storyboard.
+- Change the class for the button to the `SwiftPicker` button class of your choice (ex: `StringPickerButton`, `DatePickerButton` etc.)
+- Set up an outlet for the button in your view controller and connect the button to the outlet.
+- Set up any configuration values for the button that can't be set via the storyboard in your code. You always have to pass a view controller instance to the button but the other configuration values vary depending on the type of picker button.
+
 #### Via Code ####
+
+- Create an instance of a `SwiftPicker` button in your view controller:
+
+```Swift
+let data = ["Red", "Blue", "Green", "Yellow"]
+let btn = StringPickerButton(vc:self, title:"Colour Picker", data:data, selected:1, picked:{(val, ndx) in
+	println("Picked the value: \(val) with index: \(ndx)")
+})
+```
+- Add the button to your view and you're done :)
+
+**Note:** Till the documentation is updated to reflect all functionality, refer to the `ButtonsViewController.swift` file and the storyboard in the included sample project for all the different ways that the various button pickers can be used in a project. 
 
 ## Credits ##
 
