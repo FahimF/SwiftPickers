@@ -18,8 +18,8 @@ class FontSwiftPicker: BaseSwiftPicker, UIPickerViewDelegate, UIPickerViewDataSo
 	private var fonts = NSMutableDictionary()
 	
 	// MARK:- Initializers
-	convenience init(title:String, selected:UIFont, done:((FontSwiftPicker, UIFont)->Void), cancel:((FontSwiftPicker)->Void)) {
-		self.init()
+	init(title:String, selected:UIFont, done:((FontSwiftPicker, UIFont)->Void), cancel:((FontSwiftPicker)->Void)) {
+		super.init()
 		self.pickerTitle = title
 		self.selected = selected
 		self.done = done
@@ -37,6 +37,10 @@ class FontSwiftPicker: BaseSwiftPicker, UIPickerViewDelegate, UIPickerViewDataSo
 		let fam = families.sortedArrayUsingSelector("localizedCaseInsensitiveCompare:") as NSArray
 		families = NSMutableArray(array:fam)
 		println("Fonts: \(fonts)")
+	}
+
+	required init(coder aDecoder: NSCoder) {
+	    fatalError("init(coder:) has not been implemented")
 	}
 	
 	// MARK:- Overrides

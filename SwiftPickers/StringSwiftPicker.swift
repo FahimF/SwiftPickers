@@ -18,13 +18,17 @@ class StringSwiftPicker: BaseSwiftPicker, UIPickerViewDelegate, UIPickerViewData
 	private var cancel:((StringSwiftPicker)->Void)!
 	
 	// MARK:- Initializers
-	convenience init(title:String, data:NSArray, selected:Int, done:((StringSwiftPicker, Int, String)->Void), cancel:((StringSwiftPicker)->Void)) {
-		self.init()
+	init(title:String, data:NSArray, selected:Int, done:((StringSwiftPicker, Int, String)->Void), cancel:((StringSwiftPicker)->Void)) {
+		super.init()
 		self.data = data
 		self.pickerTitle = title
 		self.selectedIndex = selected
 		self.done = done
 		self.cancel = cancel
+	}
+
+	required init(coder aDecoder: NSCoder) {
+	    fatalError("init(coder:) has not been implemented")
 	}
 	
 	// MARK:- Overrides

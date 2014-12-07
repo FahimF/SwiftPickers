@@ -26,8 +26,8 @@ class DateSwiftPicker: BaseSwiftPicker {
 	private var cancel:((DateSwiftPicker)->Void)!
 	
 	// MARK:- Initializers
-	convenience init(title:String, mode:UIDatePickerMode, selected:AnyObject, done:((DateSwiftPicker, AnyObject)->Void), cancel:((DateSwiftPicker)->Void)) {
-		self.init()
+	init(title:String, mode:UIDatePickerMode, selected:AnyObject, done:((DateSwiftPicker, AnyObject)->Void), cancel:((DateSwiftPicker)->Void)) {
+		super.init()
 		self.pickerTitle = title
 		self.mode = mode
 		if mode == UIDatePickerMode.CountDownTimer {
@@ -37,6 +37,10 @@ class DateSwiftPicker: BaseSwiftPicker {
 		}
 		self.done = done
 		self.cancel = cancel
+	}
+
+	required init(coder aDecoder: NSCoder) {
+	    fatalError("init(coder:) has not been implemented")
 	}
 	
 	// MARK:- Overrides

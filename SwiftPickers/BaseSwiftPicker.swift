@@ -18,6 +18,7 @@ import UIKit
 	let kButtonTarget = "buttonTarget"
 	let version = (UIDevice.currentDevice().systemVersion as NSString).floatValue
 	let animationDuration = 0.25
+	let pickerHeight:CGFloat = 320.0
 	
 	var arrButtons = NSMutableArray()
 	var hideCancel:Bool = false
@@ -25,58 +26,35 @@ import UIKit
 	var attributedTitle:NSAttributedString? = nil
 
 	internal var pickerTitle:String = ""
-	internal var szView:CGSize!
+	internal var szView = CGSizeZero
 
 	private var toolbar:UIToolbar!
 	private var vwPicker:UIView!
 	private var btnDone:UIBarButtonItem!
 	private var btnCancel:UIBarButtonItem!
 	private var vwContent:UIView!
+	private var alTop:NSLayoutConstraint!
 	private var isPresenting = false
 	
 	// MARK:- Initializers
 	override init() {
-		super.init()
-		// Picker size
+		super.init(nibName:nil, bundle:nil)
+		view.backgroundColor = UIColor(white:0, alpha:0)
+		// Screen size
 		if version >= 8.0 {
 			// iOS 8.x or later
 			szView = UIScreen.mainScreen().bounds.size
 		} else {
 			// iOS 7.x
-			let sz = UIScreen.mainScreen().bounds.size
-			if UIInterfaceOrientationIsPortrait(UIApplication.sharedApplication().statusBarOrientation) {
-				szView = sz
-			} else {
-				szView.width = sz.height
-				szView.height = sz.width
+			szView = UIScreen.mainScreen().bounds.size
+			if UIInterfaceOrientationIsLandscape(UIApplication.sharedApplication().statusBarOrientation) {
+				(szView.width, szView.height) = (szView.height, szView.width)
 			}
 		}
-		// Content view
-		vwContent = UIView(frame:CGRect(x:0, y:szView.height, width:szView.width, height:320))
-		vwContent.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleTopMargin
-		// Toolbar
-		toolbar = UIToolbar(frame:CGRect(x:0, y:0, width:szView.width, height:44))
-		toolbar.autoresizingMask = UIViewAutoresizing.FlexibleWidth
-		toolbar.barStyle = UIBarStyle.Default
-		// Create default buttons, if necessary
-		if btnDone == nil {
-			btnDone = UIBarButtonItem(barButtonSystemItem:UIBarButtonSystemItem.Done, target:self, action:"doneTapped")
-		}
-		if btnCancel == nil {
-			btnCancel = UIBarButtonItem(barButtonSystemItem:UIBarButtonSystemItem.Cancel, target:self, action:"cancelTapped")
-		}
-		view.backgroundColor = UIColor(white:0, alpha:0)
-		vwContent.addSubview(toolbar)
-		vwContent.backgroundColor = UIColor.whiteColor()
-		view.addSubview(vwContent)
 	}
 
 	required init(coder aDecoder: NSCoder) {
 	    fatalError("init(coder:) has not been implemented")
-	}
-	
-	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-		super.init(nibName:nibNameOrNil, bundle:nibBundleOrNil)
 	}
 	
 	// MARK:- Overrides
@@ -121,10 +99,10 @@ import UIKit
 	}
 	
 	func showPicker(vc:UIViewController) {
+		setupViews()
 		setupToolbar()
 		// Get picker (this is handled by sub-classes)
 		vwPicker = configuredPickerView()
-		vwPicker.autoresizingMask = UIViewAutoresizing.FlexibleWidth
 		if vwPicker != nil {
 			vwContent.addSubview(vwPicker)
 		} else {
@@ -159,6 +137,45 @@ import UIKit
 	}
 	
 	// MARK:- Private Methods
+	private func setupViews() {
+		// Content view
+		if vwContent == nil {
+			vwContent = UIView(frame:CGRectZero)
+			vwContent.setTranslatesAutoresizingMaskIntoConstraints(false)
+			vwContent.backgroundColor = UIColor.whiteColor()
+			view.addSubview(vwContent)
+			// Content view horizontal layout
+			let cons = NSLayoutConstraint.constraintsWithVisualFormat("H:|[vw]|", options:NSLayoutFormatOptions.AlignAllLeft, metrics:nil, views:["vw":vwContent])
+			view.addConstraints(cons)
+			// Content view top position
+			alTop = NSLayoutConstraint(item:vwContent, attribute:NSLayoutAttribute.Top, relatedBy:NSLayoutRelation.Equal, toItem:view, attribute:NSLayoutAttribute.Top, multiplier:0, constant:szView.height)
+			view.addConstraint(alTop)
+			// Content view height
+			let alc = NSLayoutConstraint(item:vwContent, attribute:NSLayoutAttribute.Height, relatedBy:NSLayoutRelation.Equal, toItem:nil, attribute:NSLayoutAttribute.NotAnAttribute, multiplier:0, constant:pickerHeight)
+			vwContent.addConstraint(alc)
+		}
+		// Toolbar
+		if toolbar == nil {
+			toolbar = UIToolbar(frame:CGRectZero)
+			toolbar.setTranslatesAutoresizingMaskIntoConstraints(false)
+			toolbar.barStyle = UIBarStyle.Default
+			// Create default buttons, if necessary
+			if btnDone == nil {
+				btnDone = UIBarButtonItem(barButtonSystemItem:UIBarButtonSystemItem.Done, target:self, action:"doneTapped")
+			}
+			if btnCancel == nil {
+				btnCancel = UIBarButtonItem(barButtonSystemItem:UIBarButtonSystemItem.Cancel, target:self, action:"cancelTapped")
+			}
+			vwContent.addSubview(toolbar)
+			// Toolbar horizontal layout
+			var cons = NSLayoutConstraint.constraintsWithVisualFormat("H:|[tb]|", options:NSLayoutFormatOptions.AlignAllLeft, metrics:nil, views:["tb":toolbar])
+			vwContent.addConstraints(cons)
+			// Toolbar top position
+			cons = NSLayoutConstraint.constraintsWithVisualFormat("V:|[tb(44)]", options:NSLayoutFormatOptions.AlignAllLeft, metrics:nil, views:["tb":toolbar])
+			vwContent.addConstraints(cons)
+		}
+	}
+	
 	private func setupToolbar() {
 		var items = [UIBarButtonItem]()
 		// Cancel
@@ -219,22 +236,20 @@ import UIKit
 	
 	private func showActionSheet(animated:Bool) {
 		view.backgroundColor = UIColor(white:0, alpha:0.5)
-		var r = vwContent.frame
-		r.origin.y = view.frame.size.height - r.size.height
+		alTop.constant = view.frame.size.height - pickerHeight
 		let dur = animated ? animationDuration : 0
 		UIView.animateWithDuration(dur, delay:0, options:UIViewAnimationOptions.CurveEaseIn, animations:{
-			self.vwContent.frame = r
-			}, completion:nil)
+			self.view.layoutIfNeeded()
+		}, completion:nil)
 	}
 	
 	private func dismissWithButtonClick(btnIndex:Int, animated:Bool) {
-		var r = vwContent.frame
-		r.origin.y = view.frame.size.height
+		alTop.constant = view.frame.size.height
 		let dur = animated ? animationDuration : 0.0
 		UIView.animateWithDuration(dur, delay:0, options:UIViewAnimationOptions.CurveEaseIn, animations:{
-			self.vwContent.frame = r
+			self.view.layoutIfNeeded()
 			self.view.backgroundColor = UIColor(white:0, alpha:0)
-			}, completion:{(finished) in
+		}, completion:{(finished) in
 				self.view.removeFromSuperview()
 		})
 	}

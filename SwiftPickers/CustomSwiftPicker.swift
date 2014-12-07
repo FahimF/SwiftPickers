@@ -22,14 +22,18 @@ class CustomSwiftPicker: BaseSwiftPicker {
 	private var picker:UIPickerView!
 	
 	// MARK:- Initializers
-	convenience init(title:String, delegate:CustomPickerDelegate, done:((CustomSwiftPicker, UIPickerView)->Void), cancel:((CustomSwiftPicker)->Void)) {
-		self.init()
+	init(title:String, delegate:CustomPickerDelegate, done:((CustomSwiftPicker, UIPickerView)->Void), cancel:((CustomSwiftPicker)->Void)) {
+		super.init()
 		self.pickerTitle = title
 		self.delegate = delegate
 		self.done = done
 		self.cancel = cancel
 	}
-	
+
+	required init(coder aDecoder: NSCoder) {
+	    fatalError("init(coder:) has not been implemented")
+	}
+
 	// MARK:- Overrides
 	override func configuredPickerView()->UIView? {
 		// Set up picker

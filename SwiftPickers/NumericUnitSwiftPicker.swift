@@ -26,9 +26,9 @@ class NumericUnitSwiftPicker: BaseSwiftPicker, UIPickerViewDelegate, UIPickerVie
 	private var rows = [[String]]()
 	
 	// MARK:- Initializers
-	convenience init(title:String, units:[UnitDefinition], selections:[Int], done:((NumericUnitSwiftPicker, [Int])->Void), cancel:((NumericUnitSwiftPicker)->Void)) {
+	init(title:String, units:[UnitDefinition], selections:[Int], done:((NumericUnitSwiftPicker, [Int])->Void), cancel:((NumericUnitSwiftPicker)->Void)) {
 		assert(units.count == selections.count, "The number of units must match the number of selections passed as parameters")
-		self.init()
+		super.init()
 		self.pickerTitle = title
 		self.units = units
 		self.selections = selections
@@ -65,6 +65,10 @@ class NumericUnitSwiftPicker: BaseSwiftPicker, UIPickerViewDelegate, UIPickerVie
 			selected.append(0)
 			ndx++
 		}
+	}
+
+	required init(coder aDecoder: NSCoder) {
+	    fatalError("init(coder:) has not been implemented")
 	}
 	
 	// MARK:- Overrides
