@@ -13,6 +13,7 @@ class ButtonsViewController: UIViewController {
 	@IBOutlet var btnDateTime:DatePickerButton!
 	@IBOutlet var btnDate:DatePickerButton!
 	@IBOutlet var btnTime:DatePickerButton!
+	@IBOutlet var btnFont:FontPickerButton!
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +28,9 @@ class ButtonsViewController: UIViewController {
 		// Date & Time picker
 		btnDateTime.mode = UIDatePickerMode.DateAndTime
 		btnDateTime.viewController = self
+		// Font picker
+		btnFont.viewController = self
+		btnFont.selectedValue = UIFont(name:"Georgia", size:16)!
     }
 
     override func didReceiveMemoryWarning() {

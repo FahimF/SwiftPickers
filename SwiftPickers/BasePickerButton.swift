@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable class BasePickerButton: UIButton {
-	@IBInspectable var pickerTitle:String = ""
+	@IBInspectable var pickerTitle:String = "Base Picker Button"
 	var viewController:UIViewController!
 	
 	
@@ -55,6 +55,12 @@ import UIKit
 		path.lineWidth = 2
 		chevronColor.set()
 		path.stroke()
+	}
+	
+	override func intrinsicContentSize() -> CGSize {
+		var sz = super.intrinsicContentSize()
+		sz.width += 24
+		return sz
 	}
 	
 	// MARK:- Public Methods
