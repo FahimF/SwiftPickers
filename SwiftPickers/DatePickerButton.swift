@@ -22,20 +22,7 @@ class DatePickerButton: BasePickerButton {
 	
 	var mode:UIDatePickerMode = UIDatePickerMode.Date {
 		didSet {
-			switch mode {
-			case UIDatePickerMode.Time:
-				fmt.dateFormat = formatString.isEmpty ? "H:mm" : formatString
-				
-			case UIDatePickerMode.Date:
-				fmt.dateFormat = formatString.isEmpty ? "d MMM yyyy" : formatString
-				
-			case UIDatePickerMode.DateAndTime:
-				fmt.dateFormat = formatString.isEmpty ? "d MMM yyyy H:mm" : formatString
-				
-			default:
-				fmt.dateFormat = formatString.isEmpty ? "d MMM yyyy H:mm" : formatString
-			}
-			setTitle()
+			setDateFormat()
 		}
 	}
 
@@ -60,7 +47,7 @@ class DatePickerButton: BasePickerButton {
 	required init(coder aDecoder: NSCoder) {
 		super.init(coder:aDecoder)
 		if formatString.isEmpty {
-			fmt.dateFormat = "d MMM yyyy H:mm"
+			setDateFormat()
 		}
 		setTitle()
 	}
@@ -100,5 +87,22 @@ class DatePickerButton: BasePickerButton {
 			txt = fmt.stringFromDate(dt)
 		}
 		setTitle(txt, forState:UIControlState.Normal)
+	}
+	
+	private func setDateFormat() {
+		switch mode {
+		case UIDatePickerMode.Time:
+			fmt.dateFormat = formatString.isEmpty ? "H:mm" : formatString
+			
+		case UIDatePickerMode.Date:
+			fmt.dateFormat = formatString.isEmpty ? "d MMM yyyy" : formatString
+			
+		case UIDatePickerMode.DateAndTime:
+			fmt.dateFormat = formatString.isEmpty ? "d MMM yyyy H:mm" : formatString
+			
+		default:
+			fmt.dateFormat = formatString.isEmpty ? "d MMM yyyy H:mm" : formatString
+		}
+		setTitle()
 	}
 }

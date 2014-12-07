@@ -10,7 +10,9 @@ import UIKit
 
 class ButtonsViewController: UIViewController {
 	@IBOutlet var btnString:StringPickerButton!
+	@IBOutlet var btnDateTime:DatePickerButton!
 	@IBOutlet var btnDate:DatePickerButton!
+	@IBOutlet var btnTime:DatePickerButton!
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,7 +20,13 @@ class ButtonsViewController: UIViewController {
 		btnString.viewController = self
 		btnString.data = ["Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet" ]
 		// Date picker
-		btnDate.viewController = self			
+		btnDate.viewController = self
+		// Time picker
+		btnTime.mode = UIDatePickerMode.Time
+		btnTime.viewController = self
+		// Date & Time picker
+		btnDateTime.mode = UIDatePickerMode.DateAndTime
+		btnDateTime.viewController = self
     }
 
     override func didReceiveMemoryWarning() {

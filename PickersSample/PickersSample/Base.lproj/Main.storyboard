@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gXS-ED-vBQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gXS-ED-vBQ">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
         <!--Pickers-->
@@ -182,7 +182,21 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="94u-D5-mIt" id="FPI-jZ-Gwo">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Chevron Buttons" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xP2-tz-llA">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Custom Picker" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xP2-tz-llA">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="HGu-dt-NFz" style="IBUITableViewCellStyleDefault" id="B32-G9-rEy">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="B32-G9-rEy" id="q5p-bd-u0R">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Picker Buttons" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HGu-dt-NFz">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -191,7 +205,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="9VX-5m-uY1" kind="show" id="nTi-bY-Dsu"/>
+                                            <segue destination="9VX-5m-uY1" kind="show" id="51Q-h2-Mqq"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -220,8 +234,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QeV-Ia-Gp5" customClass="StringPickerButton" customModule="PickersSample">
-                                <rect key="frame" x="16" y="82" width="500" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QeV-Ia-Gp5" userLabel="String Picker" customClass="StringPickerButton" customModule="PickersSample">
+                                <rect key="frame" x="16" y="82" width="280" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="T11-gZ-KyF"/>
                                 </constraints>
@@ -235,8 +249,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JcG-i4-3By" customClass="DatePickerButton" customModule="PickersSample">
-                                <rect key="frame" x="524" y="82" width="60" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JcG-i4-3By" userLabel="Date Picker" customClass="DatePickerButton" customModule="PickersSample">
+                                <rect key="frame" x="304" y="82" width="280" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Gat-IC-fCp"/>
                                 </constraints>
@@ -247,21 +261,53 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="pickerTitle" value="Date Picker"/>
                                 </userDefinedRuntimeAttributes>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a9k-YN-tub" userLabel="Time Picker" customClass="DatePickerButton" customModule="PickersSample">
+                                <rect key="frame" x="16" y="120" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="wu2-Ob-bc8"/>
+                                </constraints>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="pickerTitle" value="Time Picker"/>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DNX-Ba-IHC" userLabel="Date &amp; Time Picker" customClass="DatePickerButton" customModule="PickersSample">
+                                <rect key="frame" x="70" y="120" width="514" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="yht-gz-lwu"/>
+                                </constraints>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="pickerTitle" value="Date &amp; Time Picker"/>
+                                </userDefinedRuntimeAttributes>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="JcG-i4-3By" firstAttribute="leading" secondItem="QeV-Ia-Gp5" secondAttribute="trailing" constant="8" id="Peh-rm-bSE"/>
                             <constraint firstItem="QeV-Ia-Gp5" firstAttribute="width" secondItem="JcG-i4-3By" secondAttribute="width" id="Swy-SW-ncJ"/>
+                            <constraint firstItem="a9k-YN-tub" firstAttribute="top" secondItem="QeV-Ia-Gp5" secondAttribute="bottom" constant="8" id="Zki-E9-9GX"/>
+                            <constraint firstItem="DNX-Ba-IHC" firstAttribute="width" secondItem="a9k-YN-tub" secondAttribute="width" id="ay8-wI-lMy"/>
                             <constraint firstItem="QeV-Ia-Gp5" firstAttribute="top" secondItem="w1A-t9-isG" secondAttribute="bottom" constant="18" id="cSa-yE-Y2z"/>
+                            <constraint firstItem="DNX-Ba-IHC" firstAttribute="leading" secondItem="a9k-YN-tub" secondAttribute="trailing" constant="8" id="e44-EU-DwJ"/>
                             <constraint firstAttribute="trailing" secondItem="JcG-i4-3By" secondAttribute="trailing" constant="16" id="hdL-HI-3gd"/>
                             <constraint firstItem="QeV-Ia-Gp5" firstAttribute="leading" secondItem="8XQ-Gr-TB8" secondAttribute="leading" constant="16" id="ibF-vN-8UI"/>
+                            <constraint firstItem="DNX-Ba-IHC" firstAttribute="top" secondItem="JcG-i4-3By" secondAttribute="bottom" constant="8" id="m1w-A4-icu"/>
                             <constraint firstItem="JcG-i4-3By" firstAttribute="top" secondItem="w1A-t9-isG" secondAttribute="bottom" constant="18" id="p8n-Kh-RSv"/>
+                            <constraint firstItem="a9k-YN-tub" firstAttribute="leading" secondItem="8XQ-Gr-TB8" secondAttribute="leading" constant="16" id="u4F-j4-7gx"/>
+                            <constraint firstAttribute="trailing" secondItem="DNX-Ba-IHC" secondAttribute="trailing" constant="16" id="xDM-gV-t9o"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Chevron Buttons" id="YOR-ut-2Fc"/>
                     <connections>
-                        <outlet property="btnDate" destination="JcG-i4-3By" id="aV9-ac-H82"/>
+                        <outlet property="btnDate" destination="JcG-i4-3By" id="UaD-ep-VmJ"/>
+                        <outlet property="btnDateTime" destination="DNX-Ba-IHC" id="HRH-Ya-2Vt"/>
                         <outlet property="btnString" destination="QeV-Ia-Gp5" id="Rw5-mL-GF0"/>
+                        <outlet property="btnTime" destination="a9k-YN-tub" id="ZhH-mT-b8z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p3z-on-MjR" userLabel="First Responder" sceneMemberID="firstResponder"/>

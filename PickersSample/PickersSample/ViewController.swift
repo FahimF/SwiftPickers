@@ -8,9 +8,11 @@
 
 import UIKit
 
-class ViewController: UITableViewController {
+class ViewController: UITableViewController, CustomPickerDelegate {
 	let isiPad = UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Pad
 
+	private var data = ["String Picker", "Date Picker", "Time Picker", "Date & Time Picker", "Time Zone Picker", "Font Picker", "Custom Picker"]
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
@@ -173,12 +175,34 @@ class ViewController: UITableViewController {
 					println("Cancelled selection")
 			})
 			
+		case (2, 3):
+			p = CustomSwiftPicker(title:"Picker Types", delegate:self, done:{(pv, picker) in
+				// Handle action
+				let row = picker.selectedRowInComponent(0)
+				println("Selected row \(row) in custom picker")
+			}, cancel:{(pv) in
+				println("Cancelled selection")
+			})
+			
 		default:
 			println("Unspecified selection. Check your code!")
 		}
 		if p != nil {
 			p.showPicker(self)
 		}
+	}
+	
+	// MARK:- Custom Picker Delegates
+	func numberOfComponentsInPickerView(pv:UIPickerView) -> Int {
+		return 1
+	}
+	
+	func pickerView(pv:UIPickerView, numberOfRowsInComponent component:Int) -> Int {
+		return data.count
+	}
+	
+	func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+		return data[row]
 	}
 }
 
